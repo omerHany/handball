@@ -36,8 +36,43 @@ class PlayerController extends Controller
     {
         //
          
-        // $validator = validator($request->all(),[
-        //     'name' => 'required|min:5|max:50',
+        $validator = validator($request->all(),[
+            'name' => 'required|min:5|max:50',
+            'id_number'=>'required|min:9|max:9',
+            'phone_number'=>'required|min:10|max:10'
+        ],[
+            'name.required'=>'ادخل اسم اللاعب',
+            'name.min' => 'اسم اللاعب قصير',
+            'name.max' => 'اسم اللاعب طويل',
+            'id_number.required' => 'ادخل رقم هوية اللاعب',
+            'id_number.min' => 'رقم هوية اللاعب قصير',
+            'id_number.max' => 'رقم الهوية اللاعب طويل',
+            'phone_number.required' => 'ادخل رقم جوال اللاعب',
+            'phone_number.min' => 'رقم جوال اللاعب قصير',
+            'phone_number.max' => 'رقم جوال اللاعب طويل'
+        ]);
+        if (!$validator->fails()){
+            $player = new player();
+        $player->name =$request->input('name');
+        $player->id_number =$request->input('id_number');
+        $player->phone_number =$request->input('phone_number');
+        $isSaved = $player->save();
+        return response()->json([
+            'message'=> $isSaved ? 'تم الاضافة بنجاح' : 'فشلت الاضافة!'
+        ], $isSaved ? response::HTTP_CREATED : response::HTTP_BAD_REQUEST);
+        }
+            else{
+                return response()->json([
+                    'message' => $validator->getMessageBag()->first()
+                ], response::HTTP_BAD_REQUEST );
+            }
+
+
+
+
+
+        // $request->validate([
+        //     'name'=>'required|min:5|max:50',
         //     'id_number'=>'required|min:0|max:9',
         //     'phone_number'=>'required|min:0|max:10'
         // ],[
@@ -51,48 +86,13 @@ class PlayerController extends Controller
         //     'phone_number.min' => 'رقم جوال اللاعب قصير',
         //     'phone_number.max' => 'رقم جوال اللاعب طويل'
         // ]);
-        // if (!$validator->failed()){
-        //     $player = new player();
+        
+        // $player = new player();
         // $player->name =$request->input('name');
         // $player->id_number =$request->input('id_number');
         // $player->phone_number =$request->input('phone_number');
-        // $isSaved = $player->save();
-        // return response()->json([
-        //     'message'=> $isSaved ? 'Created succesfully' : 'created failed!'
-        // ], $isSaved ? response::HTTP_CREATED : response::HTTP_BAD_REQUEST);
-        // }
-        //     else{
-        //         return response()->json([
-        //             'message' => $validator->getMessageBag()->first()
-        //         ], response::HTTP_BAD_REQUEST );
-        //     }
-
-
-
-
-
-        $request->validate([
-            'name'=>'required|min:5|max:50',
-            'id_number'=>'required|min:0|max:9',
-            'phone_number'=>'required|min:0|max:10'
-        ],[
-            'name.required'=>'ادخل اسم اللاعب',
-            'name.min' => 'اسم اللاعب قصير',
-            'name.max' => 'اسم اللاعب طويل',
-            'id_number.required' => 'ادخل رقم هوية اللاعب',
-            'id_number.min' => 'رقم هوية اللاعب قصير',
-            'id_number.max' => 'رقم الهوية اللاعب طويل',
-            'phone_number.required' => 'ادخل رقم جوال اللاعب',
-            'phone_number.min' => 'رقم جوال اللاعب قصير',
-            'phone_number.max' => 'رقم جوال اللاعب طويل'
-        ]);
-        
-        $player = new player();
-        $player->name =$request->input('name');
-        $player->id_number =$request->input('id_number');
-        $player->phone_number =$request->input('phone_number');
-        $is_Saved = $player->save();
-        return redirect()->route('players.index');
+        // $is_Saved = $player->save();
+        // return redirect()->route('players.index');
     }
 
     /**
@@ -121,8 +121,8 @@ class PlayerController extends Controller
         //
         $request->validate([
             'name' => 'required|min:5|max:50',
-            'id_number' => 'required|min:0|max:9',
-            'phone_number' => 'required|min:0|max:10'
+            'id_number' => 'required|min:9|max:9',
+            'phone_number' => 'required|min:9|max:10'
         ],[
             'name.required'=>'ادخل اسم اللاعب',
             'name.min' => 'اسم اللاعب قصير',

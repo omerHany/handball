@@ -1,7 +1,7 @@
 {{-- تسجيل لاعب --}}
 
 @extends('parant')
-@section('titel','اضافة لاعب')
+@section('titel','اضافة نادي')
 
 @section('content')
 
@@ -10,8 +10,8 @@
     <div class="row g-4">
         <div class="col-sm-12 col-xl-7">
             <div class="bg-secondary rounded h-100 p-4">
-                <h6 class="mb-4"> بطاقة اللاعب</h6>
-                <form onsubmit="event.preventDefault();performStore()" id="form_create" method="POST" action="{{route('players.store')}}">
+                <h6 class="mb-4"> النادي </h6>
+                <form onsubmit="event.preventDefault();performStore()" id="form_create" method="POST" action="{{route('clubs.store')}}">
                     @csrf
                         @if ($errors->any())
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -25,21 +25,21 @@
                             </div>
                         @endif
                         <div class="row mb-3">
-                        <label for="name" class="col-sm-2 col-form-label">اسم اللاعب</label>
+                        <label for="name" class="col-sm-2 col-form-label">اسم النادي</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" name="name" id="name">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="id_number" class="col-sm-2 col-form-label">رقم الهوية</label>
+                        <label for="gmail" class="col-sm-2 col-form-label">البريد الالكتروني </label>
                         <div class="col-sm-6">
-                            <input type="number" class="form-control" name="id_number" id="id_number" min="0">
+                            <input type="tixt" class="form-control" name="gmail" id="gmail">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="phone_number" class="col-sm-2 col-form-label">رقم الجوال</label>
+                        <label for="password" class="col-sm-2 col-form-label">كلمة السر</label>
                         <div class="col-sm-6">
-                            <input type="number" class="form-control" name="phone_number" id="phone_number" min="0">
+                            <input type="password" class="form-control" name="password" id="password" >
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary"> &nbsp; حفظ  &nbsp;</button>
@@ -58,10 +58,10 @@
 <script>
     
     function performStore(){
-     axios.post('/players',{
+     axios.post('/clubs',{
         name: document.getElementById('name').value,
-        id_number: document.getElementById('id_number').value,
-        phone_number: document.getElementById('phone_number').value,
+        gmail: document.getElementById('gmail').value,
+        password: document.getElementById('password').value,
     })
 
         .then(function (response) {

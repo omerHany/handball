@@ -35,34 +35,41 @@ class ManegarController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
+        $validator = validator($request->all(), [
             'name' => 'required|min:5|max:50',
             'id_number' => 'required|min:9|max:9',
             'phone_number' => 'required|min:10|max:10',
             'job'=> 'required'
         ], [
-            'name.required' => 'ادخل اسم المدرب',
-            'name.min' => 'اسم المدرب قصير',
-            'name.max' => 'اسم المدرب طويل',
-            'id_number.required' => 'ادخل رقم هوية المدرب',
-            'id_number.min' => 'رقم هوية المدرب قصير',
-            'id_number.max' => 'رقم الهوية المدرب طويل',
-            'phone_number.required' => 'ادخل رقم جوال المدرب',
-            'phone_number.min' => 'رقم جوال المدرب قصير',
-            'phone_number.max' => 'رقم جوال المدرب طويل',
+            'name.required' => 'ادخل اسم الاداري',
+            'name.min' => 'اسم الاداري قصير',
+            'name.max' => 'اسم الاداري طويل',
+            'id_number.required' => 'ادخل رقم هوية الاداري',
+            'id_number.min' => 'رقم هوية الاداري قصير',
+            'id_number.max' => 'رقم الهوية الاداري طويل',
+            'phone_number.required' => 'ادخل رقم جوال الاداري',
+            'phone_number.min' => 'رقم جوال الاداري قصير',
+            'phone_number.max' => 'رقم جوال الاداري طويل',
             'job.required' => 'ادخل الوظيفة',
 
         ]);
 
-        $manegar = new manegar();
-        $manegar->name = $request->input('name');
-        $manegar->id_number = $request->input('id_number');
-        $manegar->phone_number = $request->input('phone_number');
-        $manegar->job = $request->input('job');
-        $is_Saved = $manegar->save();
-        return redirect()->route('manegars.index');
+        if (!$validator->fails()) {
+            $manegar = new manegar();
+            $manegar->name = $request->input('name');
+            $manegar->id_number = $request->input('id_number');
+            $manegar->phone_number = $request->input('phone_number');
+            $manegar->job = $request->input('job');
+            $isSaved = $manegar->save();
+            return response()->json([
+                'message' => $isSaved ? 'تم الانشاء' : 'فضل الانشاء!'
+            ], $isSaved ? response::HTTP_CREATED : response::HTTP_BAD_REQUEST);
+        } else {
+            return response()->json([
+                'message' => $validator->getMessageBag()->first()
+            ], response::HTTP_BAD_REQUEST);
     }
-
+    }
     /**
      * Display the specified resource.
      */
@@ -92,15 +99,15 @@ class ManegarController extends Controller
             'phone_number' => 'required|min:10|max:10',
             'job' => 'required'
         ], [
-            'name.required' => 'ادخل اسم المدرب',
-            'name.min' => 'اسم المدرب قصير',
-            'name.max' => 'اسم المدرب طويل',
-            'id_number.required' => 'ادخل رقم هوية المدرب',
-            'id_number.min' => 'رقم هوية المدرب قصير',
-            'id_number.max' => 'رقم الهوية المدرب طويل',
-            'phone_number.required' => 'ادخل رقم جوال المدرب',
-            'phone_number.min' => 'رقم جوال المدرب قصير',
-            'phone_number.max' => 'رقم جوال المدرب طويل',
+            'name.required' => 'ادخل اسم الاداري',
+            'name.min' => 'اسم الاداري قصير',
+            'name.max' => 'اسم الاداري طويل',
+            'id_number.required' => 'ادخل رقم هوية الاداري',
+            'id_number.min' => 'رقم هوية الاداري قصير',
+            'id_number.max' => 'رقم الهوية الاداري طويل',
+            'phone_number.required' => 'ادخل رقم جوال الاداري',
+            'phone_number.min' => 'رقم جوال الاداري قصير',
+            'phone_number.max' => 'رقم جوال الاداري طويل',
             'job.required' => 'ادخل الوظيفة',
 
         ]);
@@ -125,7 +132,7 @@ class ManegarController extends Controller
         $isDeleted = $manegar->delete();
         return response()->json([
             'icon'=> $isDeleted ? 'success':'error',
-            'title'=> $isDeleted ? 'تم الحذف':'beleted failed!'
+            'title'=> $isDeleted ? 'تم الحذف':'فشل الحذف!'
         ],$isDeleted ?  Response::HTTP_OK : response::HTTP_BAD_REQUEST
     );
         // return redirect()->route('manegars.index');

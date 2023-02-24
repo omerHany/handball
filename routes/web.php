@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClubController;
 use App\Http\Controllers\ManegarController;
 use App\Http\Controllers\PlayerController;
 use Illuminate\Support\Facades\Route;
@@ -35,5 +36,6 @@ use Illuminate\Support\Facades\Route;
     // Route::view('/عرض_اللاعبين', 'index.index1')->name('indexx');
     Route::resource('players', PlayerController::class);
     Route::resource('manegars',ManegarController::class);
+    Route::resource('clubs',ClubController::class);
 
 // });

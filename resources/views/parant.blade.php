@@ -106,6 +106,17 @@
                         <a href="{{route('neww')}}" class="dropdown-item"><i class="fas fa-plus-circle"></i> &nbsp; اضافة خبر</a>
                     </div>
                 </div>
+                <div class="navbar-nav w-100">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>تسجيل الاندية</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{{route('clubs.create')}}" class="dropdown-item"><i class="fas fa-plus-circle"></i> &nbsp; اضافة
+                                نادي </a>
+                            <a href="{{route('clubs.index')}}" class="dropdown-item"><i class="fas fa-list-ul"></i> &nbsp; عرض
+                                الاندية</a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
                 {{-- <div class="navbar-nav w-100">
@@ -214,6 +225,19 @@
     <script src="{{asset('handdd/js/main.js')}}"></script>
     <script src="{{asset('js/axios.js')}}"></script>
     <script src="{{asset('js/sweet.js')}}"></script>
+    <script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+</script>
 
     @yield('script')
 </body>

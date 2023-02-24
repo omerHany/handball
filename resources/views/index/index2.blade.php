@@ -76,8 +76,8 @@
         
         confirmButtonColor: '#d33',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'حذف'
-        // cancelButtonText: 'الغاء'
+        confirmButtonText: 'حذف',
+        cancelButtonText: 'الغاء'
         }).then((result) => {
         if (result.isConfirmed) {
             performDelete(id, reference)

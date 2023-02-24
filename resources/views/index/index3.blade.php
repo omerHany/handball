@@ -1,7 +1,7 @@
 {{-- عرض اللاعبين --}}
 
 @extends('parant')
-@section('titel',' اللاعبين')
+@section('titel',' الاندية')
 
 @section('content')
 <br>
@@ -17,29 +17,29 @@
                             <tr>
                                 <th scope="col">الرقم</th>
                                 <th scope="col">الاسم</th>
-                                <th scope="col">رقم الهوية</th>
-                                <th scope="col">رقم الجوال</th>
+                                <th scope="col">البريد الالكتروني</th>
+                                {{-- <th scope="col">كلمة السر</th> --}}
                                 <th scope="col">تاريخ الانشاء</th>
                                 <th scope="col">تاريخ التعديل</th>
                                 <th scope="col"> الاعدادات</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($player as $play )
+                            @foreach ($club as $clb )
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{$play->name}}</td>
-                                <td>{{$play->id_number}}</td>
-                                <td>{{$play->phone_number}}</td>
-                                <td>{{$play->created_at}}</td>
-                                <td>{{$play->updated_at}}</td>
+                                <td>{{$clb->name}}</td>
+                                <td>{{$clb->gmail}}</td>
+                                {{-- <td>{{$clb->password}}</td> --}}
+                                <td>{{$clb->created_at}}</td>
+                                <td>{{$clb->updated_at}}</td>
                                 <td>
                                     <div class="m-n1">
-                                        <a href="{{route('players.edit',$play->id)}}"
+                                        <a href="{{route('clubs.edit',$clb->id)}}"
                                             class="btn btn-sm btn-sm-square btn-outline-primary m-2">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="#" onclick="confirmDistroy('{{$play->id}}',this)"
+                                        <a href="#" onclick="confirmDistroy('{{$clb->id}}',this)"
                                             class="btn btn-sm btn-sm-square btn-outline-primary m-2">
                                             <i class="fas fa-trash"></i>
                                         </a>
@@ -63,7 +63,7 @@
 <script>
     function confirmDistroy(id, reference){
         Swal.fire({
-        title: 'هل تريد حذف الاسم؟',
+        title: 'هل تريد حذف النادي؟',
         text: "!لا يمكن التراجع عن هذه الخطوة",
         icon: 'warning',
         showCancelButton: true,
@@ -78,7 +78,7 @@
         });
     }
     function performDelete(id,reference){
-     axios.delete('/players/'+id)
+     axios.delete('/clubs/'+id)
         .then(function (response) {
             // handle success
             console.log(response);
