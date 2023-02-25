@@ -48,7 +48,7 @@
                     <div class="row mb-3">
                         <label for="password" class="col-sm-2 col-form-label">كلمة السر</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="password" id="password">
+                            <input type="password" class="form-control" name="password" id="password">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary"> &nbsp; حفظ  &nbsp;</button>
