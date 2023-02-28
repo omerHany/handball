@@ -8,6 +8,7 @@ use Dotenv\Validator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 
 class PlayerController extends Controller
 {
@@ -131,12 +132,11 @@ class PlayerController extends Controller
     public function update(Request $request, player $player)
     {
         //
-        $request->validate([
+        $validator = Validator($request->all(), [
             'name' => 'required|min:5|max:50',
             'id_number' => 'required|min:9|max:9',
             'phone_number' => 'required|min:9|max:10',
-            'image' => 'required|image|mimes:jpg,png|max:10000'
-
+            'image' => 'required|image|mimes:png,jpg,jpeg|max:10000'
         ], [
             'name.required' => 'ادخل اسم اللاعب',
             'name.min' => 'اسم اللاعب قصير',
@@ -148,18 +148,32 @@ class PlayerController extends Controller
             'phone_number.min' => 'رقم جوال اللاعب قصير',
             'phone_number.max' => 'رقم جوال اللاعب طويل',
             'image.required' => 'ادخل صورة اللاعب ',
+            'image.image' => 'ادخل  اللاعب ',
+            'image.mimes' => ' صورة اللاعب ',
+            'image.max' => 'ادخل صورة  '
 
         ]);
-        $player->name = $request->input('name');
-        $player->id_number = $request->input('id_number');
-        $player->phone_number = $request->input('phone_number');
-        $player->image = $request->input('image');
-        $is_Saved = $player->save();
-        session()->flash('message', $is_Saved ? "تم التعديل " : "فشل التعديل ");
-        session()->flash('status', $is_Saved);
-        return redirect()->back();
+        if (!$validator->fails()) {
+            $player->name = $request->input('name');
+            $player->id_number = $request->input('id_number');
+            $player->phone_number = $request->input('phone_number');
+            if ($request->hasFile('image')) {
+                Storage::disk('public')->delete('' . $player->image);
+                $file = $request->file('image');
+                $imageName = time() . '_' . rand(1, 1000000) . '.' . $file->getClientOriginalExtension();
+                $image = $file->storePubliclyAs('player', $imageName, ['disk' => 'public']);
+                $player->image = $image;
+            }
+            $isSaved = $player->save();
+            return response()->json([
+                'message' => $isSaved ? 'تم التعديل بنجاح' : 'فشل التعديل!'
+            ], $isSaved ? response::HTTP_OK : response::HTTP_BAD_REQUEST);
+        } else {
+            return response()->json([
+                'message' => $validator->getMessageBag()->first()
+            ], response::HTTP_BAD_REQUEST);
+        }
     }
-
     /**
      * Remove the specified resource from storage.
      */

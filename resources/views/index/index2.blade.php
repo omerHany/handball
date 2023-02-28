@@ -20,6 +20,7 @@
                         <th scope="col">رقم الهوية</th>
                         <th scope="col">رقم الجوال</th>
                         <th scope="col">الوظيفة</th>
+                        <th scope="col">الصورة</th>
                         <th scope="col">تاريخ الانشاء</th>
                         <th scope="col">تاريخ التعديل</th>
                         <th scope="col">الاعدادات</th>

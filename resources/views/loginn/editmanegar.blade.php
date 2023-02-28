@@ -12,8 +12,8 @@
         <div class="col-sm-12 col-xl-8">
             <div class="bg-secondary rounded h-100 p-4">
                 <h6 class="mb-4"> بطاقة اداري</h6>
-                <form method="POST" action="{{route('manegars.update',$manegar->id)}}">
-                    @method('PUT') 
+                <form onsubmit="event.preventDefault();performStore()" id="form_update">
+                     
                     @csrf
                     @if ($errors->any())
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -40,7 +40,7 @@
                         <label for="name" class="col-sm-2 col-form-label">اسم الادراي</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="name"
-                            @if (old('name')) value="{{old('name')}}" @else value="{{$manegar->name}}" @endif id="name">
+                            value="{{$manegar->name}}" id="name">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -54,12 +54,19 @@
                         <label for="phone_number" class="col-sm-2 col-form-label">رقم الجوال</label>
                         <div class="col-sm-4">
                             <input type="number" class="form-control" name="phone_number"
-                           @if (old('phone_number')) value="{{old('phone_number')}}" @else value="{{$manegar->phone_number}}" @endif id="phone_number">
+                           value="{{$manegar->phone_number}}" id="phone_number">
                         </div>
                     </div>
+                    <div class="row mb-3">
+                            <label for="image" class="col-sm-2 col-form-label">الصورة</label>
+                            <div class="col-sm-6">
+                                <input type="file" class="form-control" name="image" value="{{ $manegar->image }}"
+                                    id="image">
+                            </div>
+                        </div>
                     <label for="job" class="col-sm-2 col-form-label">الوظيفة</label>
                     <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="job"
-                    @if (old('job')) value="{{old('job')}}" @else value="{{$manegar->job}}" @endif id="job">
+                    value="{{$manegar->job}}" id="job">
                         <option selected>اداري</option>
                         <option>مدرب</option>
                         <option>مساعد مدرب</option>
@@ -72,5 +79,48 @@
     </div>
 </div>
 <!-- Blank End -->
+
+@endsection
+
+
+@section('script')
+
+    <script>
+        function performStore() {
+            let formData = new FormData();
+            formData.append('_method', 'PUT');
+            formData.append('name', document.getElementById('name').value);
+            formData.append('id_number', document.getElementById('id_number').value);
+            formData.append('phone_number', document.getElementById('phone_number').value);
+            if (document.getElementById('image').files.length > 0) {
+                formData.append('image', document.getElementById('image').files[0]);
+            }
+            formData.append('job', document.getElementById('job').value);
+
+            axios.post('{{route('manegars.update', $manegar)}}', formData)
+            //     .then(function(response) {
+            //         console.log(response);
+            //         Toast.success(response.data.message);
+            //         document.getElementById('form_update').reset();
+            //     })
+                .then(function(response) {
+                    // handle success
+                    console.log(response);
+                    Toast.fire({
+                        icon: "success",
+                        title: response.data.message,
+                    });
+                })
+                .catch(function(error) {
+                    // handle error
+                    console.log(error);
+                    Toast.fire({
+                        icon: "error",
+                        title: error.response.data.message,
+                    });
+                })
+
+        }
+    </script>
 
 @endsection
