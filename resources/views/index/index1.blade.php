@@ -19,6 +19,7 @@
                                 <th scope="col">الاسم</th>
                                 <th scope="col">رقم الهوية</th>
                                 <th scope="col">رقم الجوال</th>
+                                <th scope="col">الصورة</th>
                                 <th scope="col">تاريخ الانشاء</th>
                                 <th scope="col">تاريخ التعديل</th>
                                 <th scope="col"> الاعدادات</th>
@@ -31,6 +32,9 @@
                                 <td>{{$play->name}}</td>
                                 <td>{{$play->id_number}}</td>
                                 <td>{{$play->phone_number}}</td>
+                                <td>
+                                    <img src="{{ Storage::url($play->image) }}" alt="Product-image" width="60" style="border-radius: 10px;">
+                                </td>
                                 <td>{{$play->created_at}}</td>
                                 <td>{{$play->updated_at}}</td>
                                 <td>

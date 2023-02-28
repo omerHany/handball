@@ -33,6 +33,9 @@
                         <td>{{$maneg->id_number}}</td>
                         <td>{{$maneg->phone_number}}</td>
                         <td>{{$maneg->job}}</td>
+                        <td>
+                            <img src="{{ Storage::url($maneg->image) }}" alt="Product-image" width="60" style="border-radius: 10px;">
+                        </td>
                         <td>{{$maneg->created_at}}</td> 
                         <td>{{$maneg->updated_at}}</td>
                         <td>

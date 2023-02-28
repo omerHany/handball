@@ -30,6 +30,7 @@
 
     <!-- Template Stylesheet -->
     <link href="{{asset('handdd/css/style.css')}}" rel="stylesheet">
+
 </head>
 
 <body>

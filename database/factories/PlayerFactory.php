@@ -20,7 +20,9 @@ class PlayerFactory extends Factory
             //
             'name'=>$this->faker->name(),
             // 'id_number'=>$this->faker->id_number(),
-            'phone_number' => $this->faker->phoneNumber()
+            'phone_number' => $this->faker->phoneNumber(),
+            'image' => $this->faker->imageUrl()
+
         ];
     }
 }

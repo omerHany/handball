@@ -39,7 +39,9 @@ class ManegarController extends Controller
             'name' => 'required|min:5|max:50',
             'id_number' => 'required|min:9|max:9',
             'phone_number' => 'required|min:10|max:10',
+            'image' => 'required|image|mimes:png,jpg,jpeg|max:10000',
             'job'=> 'required'
+
         ], [
             'name.required' => 'ادخل اسم الاداري',
             'name.min' => 'اسم الاداري قصير',
@@ -50,7 +52,12 @@ class ManegarController extends Controller
             'phone_number.required' => 'ادخل رقم جوال الاداري',
             'phone_number.min' => 'رقم جوال الاداري قصير',
             'phone_number.max' => 'رقم جوال الاداري طويل',
-            'job.required' => 'ادخل الوظيفة',
+            'image.required' => 'ادخل صورة اللاعب ',
+            'image.image' => 'ادخل  اللاعب ',
+            'image.mimes' => ' صورة اللاعب ',
+            'image.max' => 'ادخل صورة  ',
+            'job.required' => 'ادخل الوظيفة'
+            
 
         ]);
 
@@ -59,6 +66,12 @@ class ManegarController extends Controller
             $manegar->name = $request->input('name');
             $manegar->id_number = $request->input('id_number');
             $manegar->phone_number = $request->input('phone_number');
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $imageName = time() . '_' . rand(1, 1000000) . '.' . $file->getClientOriginalExtension();
+                $image = $file->storePubliclyAs('manegar', $imageName, ['disk' => 'public']);
+                $manegar->image = $image;
+            }
             $manegar->job = $request->input('job');
             $isSaved = $manegar->save();
             return response()->json([
@@ -97,7 +110,7 @@ class ManegarController extends Controller
             'name' => 'required|min:5|max:50',
             'id_number' => 'required|min:9|max:9',
             'phone_number' => 'required|min:10|max:10',
-            'job' => 'required'
+            'job' => 'required',
         ], [
             'name.required' => 'ادخل اسم الاداري',
             'name.min' => 'اسم الاداري قصير',

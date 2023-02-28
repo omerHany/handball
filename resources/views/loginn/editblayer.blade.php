@@ -52,6 +52,13 @@
                              @if (old('phone_number')) value="{{old('phone_number')}}" @else value="{{$player->phone_number}}" @endif id="phone_number" min="0">
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <label for="image" class="col-sm-2 col-form-label">الصورة</label>
+                        <div class="col-sm-6">
+                            <input type="file" class="form-control" name="image" @if (old('image'))
+                                value="{{old('image')}}" @else value="{{$player->image}}" @endif id="image">
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-primary"> &nbsp; حفظ  &nbsp;</button>
                 </form>
             </div>

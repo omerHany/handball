@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('id_number', 45)->default(0);
             $table->string('phone_number', 45)->default(0);
             $table->string('job', 45)->default(0);
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
