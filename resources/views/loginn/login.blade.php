@@ -28,14 +28,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="{{asset('handdd/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
-    <link href="{{asset('handdd/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('handdd/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('handdd/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{asset('handdd/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('handdd/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="{{asset('handdd/css/style.css')}}" rel="stylesheet">
+    <link href="{{ asset('handdd/css/style.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -56,32 +56,34 @@
                 <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
                     <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                           
+
                             <h2 style="color: rgb(227, 20, 20) ">تسجيل الدخول</h2>
                             <div class="position-relative">
-                                <img class="rounded-circle" src="{{asset('handdd/img/hand.jpg')}}" alt="" style="width: 120px; height: 80px;">
+                                <img class="rounded-circle" src="{{ asset('handdd/img/hand.jpg') }}" alt=""
+                                    style="width: 120px; height: 80px;">
                                 {{-- <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
                                 </div> --}}
                             </div>
                         </div>
-                        
+                    <form>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <input type="email" class="form-control" id="email"
+                                placeholder="email">
                             <label for="floatingInput">البريد الالكتروني</label>
                         </div>
                         <div class="form-floating mb-4">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                            <input type="password" class="form-control" id="password" placeholder="Password">
                             <label for="floatingPassword">كلمة السر</label>
                         </div>
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <input type="checkbox" class="form-check-input" id="remember">
                                 <label class="form-check-label" for="exampleCheck1">تذكرني</label>
                             </div>
                             <a href="">نسيت كلمة السر</a>
                         </div>
-                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4">الدخول</button>
-                        
+                        <button type="button" class="btn btn-primary py-3 w-100 mb-4">الدخول</button>
+                    </form>
                     </div>
                 </div>
             </div>
@@ -92,17 +94,35 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{asset('handdd/lib/chart/chart.min.js')}}"></script>
-    <script src="{{asset('handdd/lib/easing/easing.min.js')}}"></script>
-    <script src="{{asset('handdd/lib/waypoints/waypoints.min.js')}}"></script>
-    <script src="{{asset('handdd/lib/owlcarousel/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('handdd/lib/tempusdominus/js/moment.min.js')}}"></script>
-    <script src="{{asset('handdd/lib/tempusdominus/js/moment-timezone.min.js')}}"></script>
-    <script src="{{asset('handdd/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+    <script src="{{ asset('handdd/lib/chart/chart.min.js') }}"></script>
+    <script src="{{ asset('handdd/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('handdd/lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset('handdd/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('handdd/lib/tempusdominus/js/moment.min.js') }}"></script>
+    <script src="{{ asset('handdd/lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
+    <script src="{{ asset('handdd/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 
     <!-- Template Javascript -->
-    <script src="{{asset('handdd/js/main.js')}}"></script>
+    <script src="{{ asset('handdd/js/main.js') }}"></script>
+    <script src="{{ asset('js/axios.js') }}"></script>
+    <script src="{{ asset('js/sweet.js') }}"></script>
+    <script src="{{ asset('js/Crud.js') }}"></script>
+    <script>
+        function login() {
+            axios.post('/تسجيل_الدخول',{
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                remember: document.getElementById('remember').cheched 
+            }
+            ).then(function(response) {
+                    window.location.href = '/admin';
+            }).catch(function(error) {
+                console.log(error);
+                toastr.error(error.response.data.message)
+            });
+        }
+    </script>
+
 </body>
 
 </html>
-

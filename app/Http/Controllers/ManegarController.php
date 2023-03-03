@@ -156,7 +156,11 @@ class ManegarController extends Controller
     public function destroy(manegar $manegar)
     {
         //
+        $manegarimage = $manegar->image;
         $isDeleted = $manegar->delete();
+        if($isDeleted){
+            $imageDeleted = Storage::disk('public')->delete($manegarimage);
+        }
         return response()->json([
             'icon'=> $isDeleted ? 'success':'error',
             'title'=> $isDeleted ? 'تم الحذف':'فشل الحذف!'

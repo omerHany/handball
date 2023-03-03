@@ -180,7 +180,12 @@ class PlayerController extends Controller
     public function destroy(player $player)
     {
         //
+        $playerimage = $player->image;
+        
         $isDeleted = $player->delete();
+        if ($isDeleted) {
+            $imageDeleted = Storage::disk('public')->delete($playerimage);
+        }
         return response()->json(
             [
                 'icon' => $isDeleted ? 'success' : 'error',
