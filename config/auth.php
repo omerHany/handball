@@ -39,7 +39,7 @@ return [
         
         'admin'=>[
             'driver' => 'session',
-            'provider' => 'playeradmin'
+            'provider' => 'admin'
         ],
         'web' => [
             'driver' => 'session',
@@ -69,7 +69,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'playeradmin'=>[
+        'admin'=>[
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ]

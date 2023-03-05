@@ -36,6 +36,7 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('handdd/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('js/Toasts.css') }}">
 </head>
 
 <body>
@@ -60,30 +61,30 @@
                             <h2 style="color: rgb(227, 20, 20) ">تسجيل الدخول</h2>
                             <div class="position-relative">
                                 <img class="rounded-circle" src="{{ asset('handdd/img/hand.jpg') }}" alt=""
-                                    style="width: 120px; height: 80px;">
+                                    style="width: 100px; height: 80px;">
                                 {{-- <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
                                 </div> --}}
                             </div>
                         </div>
-                    <form>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="email"
-                                placeholder="email">
-                            <label for="floatingInput">البريد الالكتروني</label>
-                        </div>
-                        <div class="form-floating mb-4">
-                            <input type="password" class="form-control" id="password" placeholder="Password">
-                            <label for="floatingPassword">كلمة السر</label>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="remember">
-                                <label class="form-check-label" for="exampleCheck1">تذكرني</label>
+                        <form>
+                            <div for="email" class="form-floating mb-3">
+                                <input type="email" class="form-control" id="email" placeholder="email">
+                                <label for="floatingInput">البريد الالكتروني</label>
                             </div>
-                            <a href="">نسيت كلمة السر</a>
-                        </div>
-                        <button type="button" class="btn btn-primary py-3 w-100 mb-4">الدخول</button>
-                    </form>
+                            <div for="password" class="form-floating mb-4">
+                                <input type="password" class="form-control" id="password" placeholder="Password">
+                                <label for="floatingPassword">كلمة السر</label>
+                            </div>
+                            <div for="remember" class="d-flex align-items-center justify-content-between mb-4">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="remember">
+                                    <label class="form-check-label" for="exampleCheck1">تذكرني</label>
+                                </div>
+                                <a href="">نسيت كلمة السر</a>
+                            </div>
+                            <button type="button" onclick="login()"
+                                class="btn btn-primary py-3 w-100 mb-4">الدخول</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -107,19 +108,39 @@
     <script src="{{ asset('js/axios.js') }}"></script>
     <script src="{{ asset('js/sweet.js') }}"></script>
     <script src="{{ asset('js/Crud.js') }}"></script>
+    <script src="{{ asset('js/Toasts.js') }}"></script>
     <script>
-        function login() {
-            axios.post('/تسجيل_الدخول',{
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    </script>
+    <script>
+        function login(){
+            axios.post('{{route('login')}}',{
                 email: document.getElementById('email').value,
                 password: document.getElementById('password').value,
-                remember: document.getElementById('remember').cheched 
-            }
-            ).then(function(response) {
-                    window.location.href = '/admin';
-            }).catch(function(error) {
-                console.log(error);
-                toastr.error(error.response.data.message)
-            });
+                remember: document.getElementById('remember').checked
+            })
+                .then(function(response) {
+                    // handle success
+                    window.location.href = '{{route('homee')}}';
+                })
+            .catch(function(error) {
+                // handle error
+                // console.log(error.response);
+                Toast.fire({
+                    icon: "error",
+                    title: error.response.data.message,
+                });
+            })
         }
     </script>
 

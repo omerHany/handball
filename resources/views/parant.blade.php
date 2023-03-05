@@ -63,7 +63,7 @@
                         <span>كرة اليد</span>
                     </div>
                 </div>
-               <div class="col-md-6 text-center">
+               {{-- <div class="col-md-6 text-center">
                <h5 style="right" >   تسجيل  </h5>
             </div>
                 <div class="navbar-nav w-100">
@@ -73,7 +73,7 @@
                         <a href="{{route('loginn')}}" class="dropdown-item"><i class="fas fa-sign-in-alt"></i> &nbsp; تسجيل الدخول</a>
                     </div>
                 </div>
-                </div>
+                </div> --}}
                 <div class="navbar-nav w-100">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
@@ -94,7 +94,15 @@
                         </div>
                     </div>
                 </div>
-                
+                <div class="navbar-nav w-100">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>الاعدادات</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{{route('changepass')}}" class="dropdown-item"><i class="fas fa-unlock-alt"></i>  &nbsp; تغير كلمة السر</a>
+                            <a href="{{route('logout')}}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> &nbsp; تسجيل الخروج</a>
+                        </div>
+                    </div>
+                </div>
             <div class="col-md-6 text-center">
                 <br>
                 <h5 style="right"> Admin </h5>
@@ -117,7 +125,7 @@
                                 الاندية</a>
                         </div>
                     </div>
-                </div>
+                </div> 
             </div>
 
                 {{-- <div class="navbar-nav w-100">
