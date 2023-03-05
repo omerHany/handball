@@ -28,24 +28,25 @@
                         <div class="row mb-3">
                             <label for="password" class="col-sm-2 col-form-label">كلمة السر الحالية</label>
                             <div class="col-sm-6">
-                                <input type="" class="form-control"  id="password">
+                                <input type="password" class="form-control" id="password">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="new_password" class="col-sm-2 col-form-label">كلمة السر الجديدة</label>
                             <div class="col-sm-6">
-                                <input type="text   " class="form-control"  id="new_password">
+                                <input type="password" class="form-control" id="new_password">
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="new_password_confirmation" class="col-sm-2 col-form-label">تأكيد كلمة السر الجديدة</label>
+                            <label for="new_password_confirmation" class="col-sm-2 col-form-label">تأكيد كلمة السر
+                                الجديدة</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control"  id="new_password_confirmation"
-                                    min="0">
+                                <input type="password" class="form-control" id="new_password_confirmation" min="0">
                             </div>
                         </div>
-                        
-                        <button type="button" onclick="updatepassword()" class="btn btn-primary"> &nbsp; حفظ &nbsp;</button>
+
+                        <button type="button" onclick="updatepassword()" class="btn btn-primary"> &nbsp; حفظ
+                            &nbsp;</button>
                     </form>
                 </div>
             </div>
@@ -60,11 +61,11 @@
 
     <script>
         function updatepassword() {
-            axios.put('{{route('updatepass')}}',{
-                password: document.getElementById('password').value,
-                new_password: document.getElementById('new_password').value,
-                new_password_confirmation: document.getElementById('new_password_confirmation').value,
-            } )
+            axios.put('{{ route('updatepass') }}', {
+                    password: document.getElementById('password').value,
+                    new_password: document.getElementById('new_password').value,
+                    new_password_confirmation: document.getElementById('new_password_confirmation').value,
+                })
 
                 .then(function(response) {
                     // handle success

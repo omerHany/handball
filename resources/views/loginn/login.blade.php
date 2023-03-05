@@ -37,6 +37,10 @@
     <!-- Template Stylesheet -->
     <link href="{{ asset('handdd/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('js/Toasts.css') }}">
+    @section('style')
+
+    @endsection
+
 </head>
 
 <body>
@@ -72,8 +76,10 @@
                                 <label for="floatingInput">البريد الالكتروني</label>
                             </div>
                             <div for="password" class="form-floating mb-4">
-                                <input type="password" class="form-control" id="password" placeholder="Password">
+                             <input type="password" class="form-control" id="password" placeholder="Password">    
+                             {{-- <i class="far fa-eye-slash"></i>  --}}
                                 <label for="floatingPassword">كلمة السر</label>
+
                             </div>
                             <div for="remember" class="d-flex align-items-center justify-content-between mb-4">
                                 <div class="form-check">
@@ -83,7 +89,7 @@
                                 <a href="">نسيت كلمة السر</a>
                             </div>
                             <button type="button" onclick="login()"
-                                class="btn btn-primary py-3 w-100 mb-4">الدخول</button>
+                                class="btn btn-primary py-3 w-100 mb-4">تسجيل الدخول</button>
                         </form>
                     </div>
                 </div>
@@ -143,6 +149,15 @@
             })
         }
     </script>
+    {{-- <script>
+
+  const togglePassword = document.getElementById('toggle');
+
+  togglePassword.addEventListener('click', function() {
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+  });
+</script> --}}
 
 </body>
 

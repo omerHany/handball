@@ -30,6 +30,7 @@
 
     <!-- Template Stylesheet -->
     <link href="{{asset('handdd/css/style.css')}}" rel="stylesheet">
+    @yield('style')
 
 </head>
 
@@ -76,8 +77,8 @@
                 </div> --}}
                 <div class="navbar-nav w-100">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                class="far fa-file-alt me-2"></i>تسجيل لاعبين</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fas fa-sign-in-alt"></i>  &nbsp; تسجيل لاعبين</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="{{route('players.create')}}" class="dropdown-item"><i class="fas fa-plus-circle"></i> &nbsp; اضافة لاعب</a>
                             <a href="{{route('players.index')}}" class="dropdown-item"><i class="fas fa-list-ul"></i> &nbsp; عرض اللاعبين</a>
@@ -86,7 +87,7 @@
                 </div>
                 <div class="navbar-nav w-100">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>تسجيل
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-sign-in-alt"></i>  &nbsp; تسجيل
                             اداريين</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="{{route('manegars.create')}}" class="dropdown-item"><i class="fas fa-plus-circle"></i>  &nbsp; اضافة اداري</a>
@@ -96,7 +97,7 @@
                 </div>
                 <div class="navbar-nav w-100">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>الاعدادات</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-cogs"></i> &nbsp;  الاعدادات</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="{{route('changepass')}}" class="dropdown-item"><i class="fas fa-unlock-alt"></i>  &nbsp; تغير كلمة السر</a>
                             <a href="{{route('logout')}}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> &nbsp; تسجيل الخروج</a>
@@ -117,7 +118,7 @@
                 </div>
                 <div class="navbar-nav w-100">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>تسجيل الاندية</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-sign-in-alt"></i>  &nbsp; تسجيل الاندية</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="{{route('clubs.create')}}" class="dropdown-item"><i class="fas fa-plus-circle"></i> &nbsp; اضافة
                                 نادي </a>

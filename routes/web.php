@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\ManegarController;
@@ -35,7 +36,7 @@ Route::prefix('/admin')->middleware('auth:admin')->group(function(){
     Route::view('/اضافة_خبر', 'loginn.new')->name('neww');
     Route::resource('/players', PlayerController::class);
     Route::resource('/manegars', ManegarController::class);
-    Route::resource('/clubs', ClubController::class);
+    Route::resource('/clubs', AdminController::class);
     Route::get('/تغير_كلمة_السر',[AuthController::class,'editpassword'])->name('changepass');
     Route::put('/تغير_كلمة_السر', [AuthController::class, 'updatepassword'])->name('`updatepass`');
     Route::get('/تسجيل_الخروج',[AuthController::class,'logout'])->name('logout');

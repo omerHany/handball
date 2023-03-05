@@ -31,9 +31,9 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="gmail" class="col-sm-2 col-form-label">البريد الالكتروني </label>
+                        <label for="email" class="col-sm-2 col-form-label">البريد الالكتروني </label>
                         <div class="col-sm-6">
-                            <input type="tixt" class="form-control" name="gmail" id="gmail">
+                            <input type="text" class="form-control" name="email" id="email">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -58,9 +58,9 @@
 <script>
     
     function performStore(){
-     axios.post('/clubs',{
+     axios.post('/admin/clubs',{
         name: document.getElementById('name').value,
-        gmail: document.getElementById('gmail').value,
+        email: document.getElementById('email').value,
         password: document.getElementById('password').value,
     })
 
