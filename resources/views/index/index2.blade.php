@@ -89,7 +89,7 @@
         });
     }
     function performDelete(id,reference){
-     axios.delete('/manegars/'+id)
+     axios.delete('/admin/manegars/'+id)
         .then(function (response) {
             // handle success
             console.log(response);

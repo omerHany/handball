@@ -11,8 +11,7 @@
         <div class="col-sm-12 col-xl-7">
             <div class="bg-secondary rounded h-100 p-4">
                 <h6 class="mb-4"> النادي</h6>
-                <form method="POST" action="{{route('clubs.update',$club->id)}}">
-                    @method('PUT')
+                <form onsubmit="event.preventDefault();performStore()" id="form_update">
                     @csrf
                         @if ($errors->any())
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -35,14 +34,14 @@
                         <label for="name" class="col-sm-2 col-form-label">اسم النادي</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" name="name" 
-                            @if (old('name')) value="{{old('name')}}" @else value="{{$club->name}}" @endif id="name">
+                            value="{{$club->name}}" id="name">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="gmail" class="col-sm-2 col-form-label">البريد الالكتروني</label>
+                        <label for="email" class="col-sm-2 col-form-label">البريد الالكتروني</label>
                         <div class="col-sm-6">
-                            <input type="gmail" class="form-control" name="gmail" 
-                            @if (old('gmail')) value="{{old('gmail')}}" @else value="{{$club->gmail}}" @endif id="gmail">
+                            <input type="email" class="form-control" name="email" 
+                            value="{{$club->email}}" id="email">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -58,6 +57,43 @@
     </div>
 </div>
 <!-- Blank End -->
+
+@endsection
+
+@section('script')
+
+    <script>
+        function performStore() {
+            let formData = new FormData();
+            formData.append('_method', 'PUT');
+            formData.append('name', document.getElementById('name').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('password', document.getElementById('password').value);
+            axios.post('{{route('clubs.update', $club)}}', formData)
+            //     .then(function(response) {
+            //         console.log(response);
+            //         Toast.success(response.data.message);
+            //         document.getElementById('form_update').reset();
+            //     })
+                .then(function(response) {
+                    // handle success
+                    console.log(response);
+                    Toast.fire({
+                        icon: "success",
+                        title: response.data.message,
+                    });
+                })
+                .catch(function(error) {
+                    // handle error
+                    console.log(error);
+                    Toast.fire({
+                        icon: "error",
+                        title: error.response.data.message,
+                    });
+                })
+
+        }
+    </script>
 
 @endsection
 

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\club;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,10 +16,12 @@ class ClubSeeder extends Seeder
     public function run(): void
     {
         //
-        club::create([
-            'gmail'=>'omar123@gmail.com',
-            'password'=>Hash::make('12345')
-        ]);
+        // club::create([
+        //     'gmail'=>'omar123@gmail.com',
+        //     'password'=>Hash::make('12345')
+        // ]);
+
+        Admin::factory(5)->create();
 
         
     }

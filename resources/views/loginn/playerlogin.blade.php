@@ -26,6 +26,12 @@
                                     aria-label="Close"></button>
                             </div>
                         @endif
+                        {{-- <div class="row mb-3">
+                            <label for="club" class="col-sm-2 col-form-label">اسم النادي</label>
+                            <div class="col-sm-6">
+                                <input type="text" value="{{auth()->user()->name}}"  class="form-control" name="club" id="club">
+                            </div>
+                        </div> --}}
                         <div class="row mb-3">
                             <label for="name" class="col-sm-2 col-form-label">اسم اللاعب</label>
                             <div class="col-sm-6">
@@ -67,14 +73,15 @@
     <script>
         function performStore() {
             let formData = new FormData();
+            // formData.append('club', document.getElementById('club').value);
             formData.append('name', document.getElementById('name').value);
             formData.append('id_number', document.getElementById('id_number').value);
             formData.append('phone_number', document.getElementById('phone_number').value);
             if (document.getElementById('image').files.length > 0) {
                 formData.append('image', document.getElementById('image').files[0]);
             }
-            axios.post('/players', 
-                   formData
+            axios.post('{{route('players.store')}}',
+                    formData
                 )
 
                 .then(function(response) {

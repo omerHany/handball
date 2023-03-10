@@ -46,6 +46,7 @@
 </div>
 <!-- Spinner End -->
         <!-- Sidebar Start -->
+        @auth        
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
                 {{-- <a href="index.html" class="navbar-brand mx-4 mb-3"> --}}
@@ -60,14 +61,16 @@
                         </div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0" style="color:rgb(212, 22, 22)">الاتحاد الفلسطيني </h6>
+                        @auth
+                             <h6 class="mb-0" style="color:rgb(212, 22, 22)">{{auth()->user()->name}}</h6>
+                        @endauth
                         <span>كرة اليد</span>
                     </div>
                 </div>
-               {{-- <div class="col-md-6 text-center">
-               <h5 style="right" >   تسجيل  </h5>
+               <div class="col-md-6 text-center">
+               <h5 style="right" >   التسجيل  </h5>
             </div>
-                <div class="navbar-nav w-100">
+                {{-- <div class="navbar-nav w-100">
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>التسجيل</a>
                     <div class="dropdown-menu bg-transparent border-0">
@@ -104,6 +107,11 @@
                         </div>
                     </div>
                 </div>
+                
+                
+                
+                @if (auth()->user()->role == 'admin')
+
             <div class="col-md-6 text-center">
                 <br>
                 <h5 style="right"> Admin </h5>
@@ -113,7 +121,7 @@
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                             class="far fa-file-alt me-2"></i>اضافة خبر</a>
                     <div class="dropdown-menu bg-transparent border-0">
-                        <a href="{{route('neww')}}" class="dropdown-item"><i class="fas fa-plus-circle"></i> &nbsp; اضافة خبر</a>
+                        <a href="{{route('news.create')}}" class="dropdown-item"><i class="fas fa-plus-circle"></i> &nbsp; اضافة خبر</a>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
@@ -128,7 +136,7 @@
                     </div>
                 </div> 
             </div>
-
+            @endif
                 {{-- <div class="navbar-nav w-100">
                     <a href="index.html" class="nav-item nav-link active"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
@@ -149,11 +157,12 @@
                 </div> --}}
             </nav>
         </div>
+        @endauth
         <!-- Sidebar End -->
  
         <!-- Content Start -->
 
-        <div class="content">
+        <div class="content @if(!auth()->check()) open @endif" >
 
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\player;
 use Carbon\Carbon;
 use Dotenv\Validator;
@@ -18,7 +19,7 @@ class PlayerController extends Controller
     public function index()
     {
         //
-        $data = player::all();
+        $data = auth()->user()->players;
         return response()->view('index.index1', ['player' => $data]);
     }
 
@@ -28,7 +29,8 @@ class PlayerController extends Controller
     public function create()
     {
         //
-        return response()->view("loginn.playerlogin");
+        $clubs = Admin::all();
+        return response()->view("loginn.playerlogin", compact('clubs'));
     }
 
     /**
@@ -39,11 +41,13 @@ class PlayerController extends Controller
         //
 
         $validator = Validator($request->all(), [
-
+            // 'club' => 'required|string',
             'name' => 'required|min:5|max:50',
             'id_number' => 'required|min:9|max:9',
             'phone_number' => 'required|min:10|max:10',
-            'image' => 'required|image|mimes:png,jpg,jpeg|max:10000'
+            'image' => 'required|image|mimes:png,jpg,jpeg|max:10000',
+            
+            
         ], [
             'name.required' => 'ادخل اسم اللاعب',
             'name.min' => 'اسم اللاعب قصير',
@@ -57,11 +61,13 @@ class PlayerController extends Controller
             'image.required' => 'ادخل صورة اللاعب ',
             'image.image' => 'ادخل  اللاعب ',
             'image.mimes' => ' صورة اللاعب ',
-            'image.max' => 'ادخل صورة  '
+            'image.max' => 'ادخل صورة  ',
+            
 
         ]);
         if (!$validator->fails()) {
             $player = new player();
+            $player->admin_id = auth()->user()->id;
             $player->name = $request->input('name');
             $player->id_number = $request->input('id_number');
             $player->phone_number = $request->input('phone_number');
@@ -80,33 +86,6 @@ class PlayerController extends Controller
                 'message' => $validator->getMessageBag()->first()
             ], response::HTTP_BAD_REQUEST);
         }
-
-
-
-
-
-        // $request->validate([
-        //     'name'=>'required|min:5|max:50',
-        //     'id_number'=>'required|min:0|max:9',
-        //     'phone_number'=>'required|min:0|max:10'
-        // ],[
-        //     'name.required'=>'ادخل اسم اللاعب',
-        //     'name.min' => 'اسم اللاعب قصير',
-        //     'name.max' => 'اسم اللاعب طويل',
-        //     'id_number.required' => 'ادخل رقم هوية اللاعب',
-        //     'id_number.min' => 'رقم هوية اللاعب قصير',
-        //     'id_number.max' => 'رقم الهوية اللاعب طويل',
-        //     'phone_number.required' => 'ادخل رقم جوال اللاعب',
-        //     'phone_number.min' => 'رقم جوال اللاعب قصير',
-        //     'phone_number.max' => 'رقم جوال اللاعب طويل'
-        // ]);
-
-        // $player = new player();
-        // $player->name =$request->input('name');
-        // $player->id_number =$request->input('id_number');
-        // $player->phone_number =$request->input('phone_number');
-        // $is_Saved = $player->save();
-        // return redirect()->route('players.index');
     }
 
     /**

@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\club>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\News>
  */
-class ClubFactory extends Factory
+class NewsFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,9 +18,6 @@ class ClubFactory extends Factory
     {
         return [
             //
-            'name' => $this->faker->name(),
-            'email'=> $this->faker->email(),
-            'password'=> $this->faker->password()
         ];
     }
 }

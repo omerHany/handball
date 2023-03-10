@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\manegar;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class ManegarController extends Controller
     public function index()
     {
         //
-        $data = manegar::all();
+        $data = auth()->user()->manegars;
         return response()->view('index.index2', ['manegar' => $data]);
     }
 
@@ -26,8 +27,8 @@ class ManegarController extends Controller
     public function create()
     {
         //
-        return response()->view("loginn.manegarlogin");
-
+        $clubs = Admin::all();
+        return response()->view("loginn.manegarlogin", compact('clubs'));
     }
 
     /**
@@ -64,6 +65,7 @@ class ManegarController extends Controller
 
         if (!$validator->fails()) {
             $manegar = new manegar();
+            $manegar->admin_id = auth()->user()->id;
             $manegar->name = $request->input('name');
             $manegar->id_number = $request->input('id_number');
             $manegar->phone_number = $request->input('phone_number');
@@ -76,7 +78,7 @@ class ManegarController extends Controller
             $manegar->job = $request->input('job');
             $isSaved = $manegar->save();
             return response()->json([
-                'message' => $isSaved ? 'تم الانشاء' : 'فضل الانشاء!'
+                'message' => $isSaved ? 'تم الاضافة بنجاح' : 'فضلت الاضافة!'
             ], $isSaved ? response::HTTP_CREATED : response::HTTP_BAD_REQUEST);
         } else {
             return response()->json([

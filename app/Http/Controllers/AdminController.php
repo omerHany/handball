@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\club;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -16,6 +17,8 @@ class AdminController extends Controller
     public function index()
     {
         //
+        $data = Admin::all();
+        return response()->view('index.index3', ['club' => $data]);
     }
 
     /**
@@ -25,7 +28,6 @@ class AdminController extends Controller
     {
         //
         return response()->view("loginn.clublogin");
-
     }
 
     /**
@@ -75,24 +77,66 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Admin $admin)
+    public function edit(Admin $club)
     {
         //
+        return response()->view('loginn.editclub', ['club' => $club]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, Admin $club)
     {
         //
+        $validator = Validator($request->all(), 
+            [
+                'name' => 'required|min:5|max:50',
+                'email' => 'required',
+                'password' => 'required'
+            ], [
+                'name.required' => 'ادخل اسم النادي',
+                'name.min' => 'اسم النادي قصير',
+                'name.max' => 'اسم النادي طويل',
+                'email.required' => 'ادخل البريد الالكتروني',
+                'password.required' => 'ادخل كلمة السر'
+            ]);
+        if (!$validator->fails()) {
+            $club->name = $request->input('name');
+            $club->email = $request->input('email');
+            $club->password = $request->input('password');
+            $isSaved = $club->save();
+            return response()->json([
+                'message' => $isSaved ? 'تم التعديل بنجاح' : 'فشل التعديل!'
+            ], $isSaved ? response::HTTP_OK : response::HTTP_BAD_REQUEST);
+        } else {
+            return response()->json([
+                'message' => $validator->getMessageBag()->first()
+            ], response::HTTP_BAD_REQUEST);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Admin $admin)
+    public function destroy(Admin $club)
     {
-        //
+        if ($club->id == 1) {
+            return response()->json(
+                [
+                    'icon' => 'error',
+                    'title' => 'Deleted failed! admin account'
+                ],
+                response::HTTP_BAD_REQUEST
+            );
+        }
+        $isDeleted = $club->delete();
+        return response()->json(
+            [
+                'icon' => $isDeleted ? 'success' : 'error',
+                'title' => $isDeleted ? ' تم الحذف' : 'deleted failed!'
+            ],
+            $isDeleted ? response::HTTP_OK : response::HTTP_BAD_REQUEST
+        );
     }
 }

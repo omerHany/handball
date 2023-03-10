@@ -10,4 +10,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Admin extends Authenticatable
 {
     use HasFactory;
+    public function players(){
+        return $this->hasMany(player::class);
+    }
+    public function manegars()
+    {
+        return $this->hasMany(manegar::class);
+    }
+
 }

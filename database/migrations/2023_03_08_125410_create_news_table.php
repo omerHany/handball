@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('manegars', function (Blueprint $table) {
+        Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 45)->default(0);
-            $table->string('id_number', 45)->default(0);
-            $table->string('phone_number', 45)->default(0);
-            $table->string('image')->nullable();
-            $table->string('job', 45)->default(0);
-            
+            $table->string('title');
+            $table->string('image');
+            $table->longText('content');
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('manegars');
+        Schema::dropIfExists('news');
     }
 };

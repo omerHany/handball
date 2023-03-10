@@ -82,7 +82,7 @@
         });
     }
     function performDelete(id,reference){
-     axios.delete('/players/'+id)
+     axios.delete('/admin/players/'+id)
         .then(function (response) {
             // handle success
             console.log(response);

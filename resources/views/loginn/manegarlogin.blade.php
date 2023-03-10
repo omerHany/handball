@@ -47,7 +47,7 @@
                         </div>
                         <div class="row mb-3">
                             <label for="image" class="col-sm-2 col-form-label">الصورة</label>
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <input type="file" class="form-control" name="img[]" id="image">
                             </div>
                         </div>
@@ -82,7 +82,7 @@
             formData.append('image', document.getElementById('image').files[0]);
         }
         formData.append('job', document.getElementById('job').value);
-        axios.post('/manegars',
+        axios.post('{{route('manegars.store')}}',
                 formData
             )
 

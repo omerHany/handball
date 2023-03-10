@@ -29,7 +29,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{$clb->name}}</td>
-                                <td>{{$clb->gmail}}</td>
+                                <td>{{$clb->email}}</td>
                                 {{-- <td>{{$clb->password}}</td> --}}
                                 <td>{{$clb->created_at}}</td>
                                 <td>{{$clb->updated_at}}</td>
@@ -39,10 +39,13 @@
                                             class="btn btn-sm btn-sm-square btn-outline-primary m-2">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="#" onclick="confirmDistroy('{{$clb->id}}',this)"
+                                        @if (auth()->user()->id != $clb->id)
+                                            <a href="#" onclick="confirmDistroy('{{$clb->id}}',this)"
                                             class="btn btn-sm btn-sm-square btn-outline-primary m-2">
                                             <i class="fas fa-trash"></i>
                                         </a>
+                                        @endif
+                                        
                                     </div>
                                 </td>
                             </tr>
@@ -78,7 +81,7 @@
         });
     }
     function performDelete(id,reference){
-     axios.delete('/clubs/'+id)
+     axios.delete('/admin/clubs/'+id)
         .then(function (response) {
             // handle success
             console.log(response);
