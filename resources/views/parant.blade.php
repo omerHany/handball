@@ -135,6 +135,14 @@
                         </div>
                     </div>
                 </div> 
+                 <div class="navbar-nav w-100">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-list"></i>  &nbsp; الصفحات الرئيسية</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{{route('form_edit.index')}}" class="dropdown-item"><i class="fas fa-edit"></i> &nbsp; تعديل الصفحات  </a>
+                        </div>
+                    </div>
+                </div> 
             </div>
             @endif
                 {{-- <div class="navbar-nav w-100">

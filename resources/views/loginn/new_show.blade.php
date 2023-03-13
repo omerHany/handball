@@ -15,7 +15,7 @@
                     <div class="bg-dark rounded d-flex justify-content-between p-3">
                         
                             <div>
-                                <img src="{{Storage::url($news->image)}}">
+                                {{-- <img src="{{Storage::url($news->image)}}" class="align-items-center" width="300" height="200"> --}}
                                 <h3>{!!$news->content!!}</h3>
                             </div>
                         

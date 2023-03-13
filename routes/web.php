@@ -3,11 +3,14 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\FomrController;
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ManegarController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PlayerController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Contracts\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,11 +38,9 @@ Route::prefix('/')->group(function () {
 });
 Route::prefix('/admin')->middleware('auth:admin')->group(function () {
     Route::middleware('role:admin')->group(function () {
-        // Route::view('/اضافة_خبر', 'loginn.new')->name('neww');
         Route::resource('news',NewsController::class);
-        
-        // Route::view('/الاخبار', 'loginn.new_show')->name('news');
-        Route::resource('/clubs', AdminController::class);
+        Route::resource('/form_edit',FormController::class);
+        Route::resource('/clubs', AdminController::class,);
     });
     Route::resource('/players', PlayerController::class);
     Route::resource('/manegars', ManegarController::class);

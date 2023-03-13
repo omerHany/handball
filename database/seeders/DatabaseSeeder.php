@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             ClubSeeder::class,
+            FormSeeder::class,
         ]);
 
         // \App\Models\User::factory(10)->create();

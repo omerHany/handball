@@ -72,7 +72,7 @@
 <script>
     function confirmDistroy(id, reference){
         Swal.fire({
-        title: 'هل تريد حذف الاسم؟',
+        title: 'هل تريد حذف الاداري؟',
         text: "!لا يمكن التراجع عن هذه الخطوة",
         icon: 'warning',
         // CancelButtonText: 'الغاء'
