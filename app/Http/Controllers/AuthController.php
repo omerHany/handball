@@ -12,7 +12,7 @@ class AuthController extends Controller
     //
     public function ShowLogin()
     {
-        return view('loginn.login');
+        return view('auth.login');
     }
 
     public function login(Request $request)
@@ -50,7 +50,7 @@ class AuthController extends Controller
 
 
     public function editpassword(Request $request){
-        return response()->view('loginn.change-password');
+        return response()->view('setting.change-password');
     }
 
 

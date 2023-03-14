@@ -23,43 +23,42 @@ use Spatie\Permission\Contracts\Role;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });     '/تسجيل_الدخول'
+Route::get('/', [FrontController::class, 'home'])->name('homee');
 
-// Route::view('/','parant');
-// Route::view('/', 'home');
+// الاخبار
+Route::get('/الاخبار/{news}', [NewsController::class, 'show'])->name('showw');
 
+Route::view('/الاندية', 'form.cup')->name('cupp');
+Route::view('/البطولات', 'form.btolat')->name('btolatt');
+Route::view('/لجان_الاتحاد', 'form.legan')->name('legann');
+   
 
-// // Route::prefix('handball')->group(function(){
+// تسجيل الدخول 
 Route::prefix('/')->group(function () {
     Route::get('/تسجيل_الدخول', [AuthController::class, 'showLogin'])->name('loginn');
     Route::post('/تسجيل_الدخول', [AuthController::class, 'login'])->name('login');
 });
+    // صفحات المشرف
 Route::prefix('/admin')->middleware('auth:admin')->group(function () {
     Route::middleware('role:admin')->group(function () {
-        Route::resource('news',NewsController::class);
-        Route::resource('/form_edit',FormController::class);
+
+        Route::resource('news', NewsController::class);
+
+        Route::resource('/form_edit', FormController::class);
+
         Route::resource('/clubs', AdminController::class,);
     });
+    // dashboard
+Route::view('dashboard', 'parant')->name('dashboard');
+
+    // اللاعبين
     Route::resource('/players', PlayerController::class);
+// الادارين
     Route::resource('/manegars', ManegarController::class);
+// تغير كلمه السر
     Route::get('/تغير_كلمة_السر', [AuthController::class, 'editpassword'])->name('changepass');
     Route::put('/تغير_كلمة_السر', [AuthController::class, 'updatepassword'])->name('updatepass');
+// تسجيل الدخول
     Route::get('/تسجيل_الخروج', [AuthController::class, 'logout'])->name('logout');
 });
-Route::get('/الرئيسية', [FrontController::class, 'home'])->name('homee');
-// Route::get('/الاخبار', [NewsController::class]);
-Route::get('/الاخبار/{news}', [NewsController::class,'show'])->name('showw');
 
-
-Route::view('/من_نحن', 'form.about')->name('aboutt');
-Route::view('/الاندية', 'form.cup')->name('cupp');
-Route::view('/البطولات', 'form.btolat')->name('btolatt');
-Route::view('/لجان_الاتحاد', 'form.legan')->name('legann');
-    
-    // Route::view('/اضافة_لاعب', 'loginn.playerlogin')->name('playerloginn');
-    // Route::view('/اضافة_اداري', 'loginn.manegarlogin')->name('manegarloginn');
-    
-
-// });

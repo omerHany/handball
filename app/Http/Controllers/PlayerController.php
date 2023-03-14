@@ -19,8 +19,9 @@ class PlayerController extends Controller
     public function index()
     {
         //
-        $data = auth()->user()->players;
-        return response()->view('index.index1', ['player' => $data]);
+        // $players = auth()->user()->players;
+        $players = player::all();
+        return response()->view('player.indexPlayer', ['players' => $players]);
     }
 
     /**
@@ -29,8 +30,7 @@ class PlayerController extends Controller
     public function create()
     {
         //
-        $clubs = Admin::all();
-        return response()->view("loginn.playerlogin", compact('clubs'));
+        return response()->view("player.createPlayer");
     }
 
     /**
@@ -102,7 +102,7 @@ class PlayerController extends Controller
     public function edit(player $player)
     {
         //
-        return response()->view('loginn.editblayer', ['player' => $player]);
+        return response()->view('player.editPlayer', ['player' => $player]);
     }
 
     /**

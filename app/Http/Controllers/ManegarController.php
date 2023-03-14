@@ -17,8 +17,10 @@ class ManegarController extends Controller
     public function index()
     {
         //
-        $data = auth()->user()->manegars;
-        return response()->view('index.index2', ['manegar' => $data]);
+        // $data = auth()->user()->manegars;
+
+        $manegars = manegar::all();
+        return response()->view('manegar.indexManegar', ['manegars' => $manegars]);
     }
 
     /**
@@ -27,8 +29,7 @@ class ManegarController extends Controller
     public function create()
     {
         //
-        $clubs = Admin::all();
-        return response()->view("loginn.manegarlogin", compact('clubs'));
+        return response()->view("manegar.createManegar");
     }
 
     /**
@@ -42,7 +43,7 @@ class ManegarController extends Controller
             'id_number' => 'required|min:9|max:9',
             'phone_number' => 'required|min:10|max:10',
             'image' => 'required|image|mimes:png,jpg,jpeg|max:10000',
-            'job'=> 'required'
+            'job' => 'required'
 
         ], [
             'name.required' => 'ادخل اسم الاداري',
@@ -59,7 +60,7 @@ class ManegarController extends Controller
             'image.mimes' => ' صورة اللاعب ',
             'image.max' => 'ادخل صورة  ',
             'job.required' => 'ادخل الوظيفة'
-            
+
 
         ]);
 
@@ -84,7 +85,7 @@ class ManegarController extends Controller
             return response()->json([
                 'message' => $validator->getMessageBag()->first()
             ], response::HTTP_BAD_REQUEST);
-    }
+        }
     }
     /**
      * Display the specified resource.
@@ -100,7 +101,7 @@ class ManegarController extends Controller
     public function edit(manegar $manegar)
     {
         //
-        return response()->view('loginn.editmanegar',['manegar'=>$manegar]);
+        return response()->view('manegar.editManegar', ['manegar' => $manegar]);
     }
 
     /**
@@ -113,7 +114,10 @@ class ManegarController extends Controller
             'name' => 'required|min:5|max:50',
             'id_number' => 'required|min:9|max:9',
             'phone_number' => 'required|min:9|max:10',
-            'image' => 'required|image|mimes:png,jpg,jpeg|max:10000'
+            'image' => 'required|image|mimes:png,jpg,jpeg|max:10000',
+            'job' => 'required'
+
+
         ], [
             'name.required' => 'ادخل اسم اللاعب',
             'name.min' => 'اسم اللاعب قصير',
@@ -127,13 +131,17 @@ class ManegarController extends Controller
             'image.required' => 'ادخل صورة اللاعب ',
             'image.image' => 'ادخل  اللاعب ',
             'image.mimes' => ' صورة اللاعب ',
-            'image.max' => 'ادخل صورة  '
+            'image.max' => 'ادخل صورة  ',
+            'job.required' => 'ادخل الوظيفة'
+
 
         ]);
         if (!$validator->fails()) {
             $manegar->name = $request->input('name');
             $manegar->id_number = $request->input('id_number');
             $manegar->phone_number = $request->input('phone_number');
+            $manegar->job = $request->input('job');
+
             if ($request->hasFile('image')) {
                 Storage::disk('public')->delete('' . $manegar->image);
                 $file = $request->file('image');
@@ -141,6 +149,7 @@ class ManegarController extends Controller
                 $image = $file->storePubliclyAs('manegar', $imageName, ['disk' => 'public']);
                 $manegar->image = $image;
             }
+            
             $isSaved = $manegar->save();
             return response()->json([
                 'message' => $isSaved ? 'تم التعديل بنجاح' : 'فشل التعديل!'
@@ -160,14 +169,16 @@ class ManegarController extends Controller
         //
         $manegarimage = $manegar->image;
         $isDeleted = $manegar->delete();
-        if($isDeleted){
+        if ($isDeleted) {
             $imageDeleted = Storage::disk('public')->delete($manegarimage);
         }
-        return response()->json([
-            'icon'=> $isDeleted ? 'success':'error',
-            'title'=> $isDeleted ? 'تم الحذف':'فشل الحذف!'
-        ],$isDeleted ?  Response::HTTP_OK : response::HTTP_BAD_REQUEST
-    );
+        return response()->json(
+            [
+                'icon' => $isDeleted ? 'success' : 'error',
+                'title' => $isDeleted ? 'تم الحذف' : 'فشل الحذف!'
+            ],
+            $isDeleted ?  Response::HTTP_OK : response::HTTP_BAD_REQUEST
+        );
         // return redirect()->route('manegars.index');
-    }  
+    }
 }

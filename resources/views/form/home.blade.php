@@ -6,69 +6,68 @@
 
 @section('content')
 
-    <div class="container-fluid pt-4 px-4 col-sm-12 col-xl-10">
+<div class="container-fluid pt-4 px-4 col-sm-12 col-xl-10">
 
-        <div class="row vh-100 bg-secondary rounded  justify-content-center mx-0">
-            <div class="col-md-6 text-center">
+    <div class="row vh-100 bg-secondary rounded  justify-content-center mx-0">
+        <div class="col-md-6 text-center">
 
 
-                <div class="container-fluid pt-1 px-1">
-                    <div class="row g-4">
-                        <div class="col-sm-20 col-xl-16"> 
-                            <div class="bg-dark rounded d-flex p-4">
-                                <h4 class="text-primary"> &nbsp; الاتحاد الفلسطيني لكرة اليد </h4>
-                            </div>
+            <div class="container-fluid pt-1 px-1">
+                <div class="row g-4">
+                    <div class="col-sm-20 col-xl-16">
+                        <div class="bg-dark rounded d-flex p-4">
+                            <h4 class="text-primary"> &nbsp; الاتحاد الفلسطيني لكرة اليد </h4>
                         </div>
                     </div>
                 </div>
+            </div>
 
 
-                <div class="container-fluid pt-4 px-4 ">
-                    <div class="row g-4">
-                        @foreach ($data as $new)
-                        
-                            <div class="col-sm-12 col-xl-12" id="div_{{$new->id}}">
-                                <div class="bg-dark rounded d-flex align-items-center justify-content-between p-3">
-                                    {{-- <i class="fa fa-chart-line fa-3x text-primary"></i> --}}
-                                    
-                                    <div class="ms-2">
-                                        <a href="{{ route('showw', $new->id) }}">
-                                            <img src="{{ Storage::url($new->image) }}" alt="news-image" width="100"
-                                                height="90" style="border-radius: 10px;">
-                                        </a>
-                                        <a href="{{ route('showw', $new->id) }}">{{ $new->title }}</a>
-                                    </div>
-                                    
-                                    @auth
-                                        @if (auth()->user()->role == 'admin')
-                                    <div class="m-n1">
-                                        <a href="{{route('news.edit',$new->id)}}"
-                                            class="btn btn-sm btn-sm-square btn-outline-primary m-2">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a href="#" 
-                                         onclick="confirmDistroy('{{ $new->id }}',this)"
-                                            class="btn btn-sm btn-sm-square btn-outline-primary m-2">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </div>
-                                    @endif
-                                    @endauth
-                                    
-                                </div>
+            <div class="container-fluid pt-4 px-4 ">
+                {{-- <div class="row g-4">
+                    @foreach ($data as $new)
+
+                    <div class="col-sm-12 col-xl-12" id="div_{{$new->id}}">
+                        <div class="bg-dark rounded d-flex align-items-center justify-content-between p-3">
+                            <i class="fa fa-chart-line fa-3x text-primary"></i>
+
+                            <div class="ms-2">
+                                <a href="{{ route('showw', $new->id) }}">
+                                    <img src="{{ Storage::url($new->image) }}" alt="news-image" width="100" height="90"
+                                        style="border-radius: 10px;">
+                                </a>
+                                <a href="{{ route('showw', $new->id) }}">{{ $new->title }}</a>
                             </div>
-                        @endforeach
-                        {{ $data->links() }}
+
+                            @auth
+                            @if (auth()->user()->role == 'admin')
+                            <div class="m-n1">
+                                <a href="{{route('news.edit',$new->id)}}"
+                                    class="btn btn-sm btn-sm-square btn-outline-primary m-2">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="#" onclick="confirmDistroy('{{ $new->id }}',this)"
+                                    class="btn btn-sm btn-sm-square btn-outline-primary m-2">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                            @endif
+                            @endauth
+
+                        </div>
                     </div>
-
-                </div>
-
+                    @endforeach
+                    {{ $data->links() }}
+                </div> --}}
 
             </div>
-        </div>
 
+
+        </div>
     </div>
-    {{-- {{ $data->links() }} --}}
+
+</div>
+{{-- {{ $data->links() }} --}}
 
 @endsection
 
@@ -114,8 +113,9 @@
         timer: 1500
         })
     }
+</script>
 
-
+{{--  <script>
     // function performStore() {
     //         let formData = new FormData();
     //         formData.append('_method', 'PUT');
@@ -147,5 +147,5 @@
     //             })
 
     //     }
-</script>
+</script>  --}}
 @endsection

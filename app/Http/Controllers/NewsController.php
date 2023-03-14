@@ -27,7 +27,7 @@ class NewsController extends Controller
     public function create()
     {
         //
-        return response()->view('loginn.new');
+        return response()->view('new.new');
     }
 
     /**

@@ -9,7 +9,7 @@ class FrontController extends Controller
 {
     //
     public function home(Request $request){
-        $data = News::paginate(5);
-        return response()->view('form.home',['data'=>$data]);
+        $data = News::all();
+        return response()->view('userInterface.user',['data'=>$data]);
     }
 }

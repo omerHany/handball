@@ -17,8 +17,8 @@ class AdminController extends Controller
     public function index()
     {
         //
-        $data = Admin::all();
-        return response()->view('index.index3', ['club' => $data]);
+        $clubs = Admin::all();
+        return response()->view('club.indexClub', ['clubs' => $clubs]);
     }
 
     /**
@@ -27,7 +27,7 @@ class AdminController extends Controller
     public function create()
     {
         //
-        return response()->view("loginn.clublogin");
+        return response()->view("club.createClub");
     }
 
     /**
@@ -80,7 +80,7 @@ class AdminController extends Controller
     public function edit(Admin $club)
     {
         //
-        return response()->view('loginn.editclub', ['club' => $club]);
+        return response()->view('club.editClub ', ['club' => $club]);
     }
 
     /**
