@@ -125,6 +125,26 @@
                                 </a>
                             </li>
                         </ul>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="{{route('homee')}}" class="menu-link">
+                                    <div data-i18n="Basic Inputs">الاخبار</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-detail"></i>
+                            <div data-i18n="Form Elements">تعديل الصفحات </div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="{{route('form_edit.index')}}" class="menu-link">
+                                    <div data-i18n="Basic Inputs">تعديل الصفحات</div>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
                     <li class="menu-item">

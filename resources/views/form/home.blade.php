@@ -24,7 +24,7 @@
 
 
             <div class="container-fluid pt-4 px-4 ">
-                {{-- <div class="row g-4">
+                <div class="row g-4">
                     @foreach ($data as $new)
 
                     <div class="col-sm-12 col-xl-12" id="div_{{$new->id}}">
@@ -58,7 +58,7 @@
                     </div>
                     @endforeach
                     {{ $data->links() }}
-                </div> --}}
+                </div>
 
             </div>
 

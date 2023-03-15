@@ -14,6 +14,6 @@ class FormSeeder extends Seeder
     public function run(): void
     {
         //
-        Form::factory(2)->create();
+        Form::factory(4)->create();
     }
 }

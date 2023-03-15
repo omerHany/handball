@@ -15,7 +15,7 @@ class FormController extends Controller
      */
     public function index()
     {
-        return response()->view('loginn.edit_forms');
+        return response()->view('forms.edit_forms');
         //
     }
 

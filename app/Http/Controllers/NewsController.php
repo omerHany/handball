@@ -16,7 +16,7 @@ class NewsController extends Controller
     public function index()
     {
         //
-        $data = News::paginate(10);
+        $data = News::all();
         // dd($data);
         return view('form.home', compact('data'));
     }
@@ -80,7 +80,7 @@ class NewsController extends Controller
     {
         //
         
-        return response()->view('loginn.new_show', ['news' => $news]);
+        return response()->view('new.newShow', ['news' => $news]);
     }
 
     /**
@@ -90,7 +90,7 @@ class NewsController extends Controller
     {
         //
         // $news = News::findOrFail($id);
-        return response()->view('loginn.new_edit', ['news' => $news]);
+        return response()->view('new.newEdit', ['news' => $news]);
     }
      
     /**

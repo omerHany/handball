@@ -31,8 +31,6 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('userInter/css/style.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('hand/assets/vendor/fonts/boxicons.css')}}" />
-
 
 </head>
 
@@ -43,25 +41,15 @@
             <div class="d-inline-flex align-items-center" style="height: 100px;">
 
                 <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
-                     @if (auth()->check())
-                        <div class="demo-inline-spacing" style="color: #ffffff">
-                            <a href="#"
-                                class="btn rounded-pill btn-icon btn-outline-primary">
-                                <span class="tf-icons bx bx-edit"></span>
-                            </a>
-                        </div>
-                    @endif
-                    @if (!auth()->check())
-                        <a href="{{ route('loginn') }}" class="nav-item nav-link">
-                            <h4 class="m-0" style="color: #ffffff"><i class="fa fa-user-tie me-2"></i> تسجيل الدخول
-                            </h4>
-                        </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarCollapse">
-                            <span class="fa fa-bars"></span>
-                        </button>
-                    @endif
-                   
+                    <a href="{{ route('loginn') }}" class="nav-item nav-link">
+                        <h4 class="m-0" style="color: #ffffff"><i class="fa fa-user-tie me-2"></i> تسجيل الدخول </h4>
+                    </a>
+
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarCollapse">
+                        <span class="fa fa-bars"></span>
+                    </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0">
                             <div style="display: flex; justify-content: center; align-items: center;">
@@ -74,8 +62,8 @@
                             <a href="about.html" class="nav-item nav-link">لجان الاتحاد</a>
                             <a href="index.html" class="nav-item nav-link active">الرئيسية</a>
                         </div>
-                        {{-- <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal"
-                            data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton> --}}
+                        <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal"
+                            data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
 
                     </div>
                 </nav>
@@ -116,38 +104,9 @@
                 <h2 class="fw-bold text-primary text-uppercase">الاتحاد الفلسطيني لكرة اليد</h2>
                 <h1 class="mb-0">أخبار كرة اليد </h1>
             </div>
-            <div class="row g-5">
-                @foreach ($data as $new)
-                    <div class="col-lg-4 wow slideInUp" id="div_{{ $new->id }}">
-                        <div class="blog-item bg-light rounded overflow-hidden">
-
-                            <div class="blog-img position-relative overflow-hidden">
-                                <a href="{{ route('showw', $new->id) }}">
-                                    <img src="{{ Storage::url($new->image) }}" alt="news-image" width="100"
-                                        height="90" style="border-radius: 10px;">
-                                </a>
-                                &nbsp;&nbsp;
-                                <a href="{{ route('showw', $new->id) }}">{{ $new->title }}</a>
-                                <br>
-                                <br>
-                                @auth
-                                    @if (auth()->user()->role == 'admin')
-                                        <div class="demo-inline-spacing">
-                                            <a href="{{ route('news.edit', $new->id) }}"
-                                                class="btn rounded-pill btn-icon btn-outline-primary">
-                                                <span class="tf-icons bx bx-edit"></span>
-                                            </a>
-                                            <a href="#" onclick="confirmDistroy('{{ $new->id }}',this)"
-                                                class="btn rounded-pill btn-icon btn-outline-secondary">
-                                                <span class="tf-icons bx bx-trash"></span>
-                                            </a>
-                                        </div>
-                                    @endif
-                                @endauth
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+            <div>
+                {{-- <img src="{{Storage::url($news->image)}}" class="align-items-center" width="300" height="200"> --}}
+                <h3>{!! $news->content !!}</h3>
             </div>
         </div>
     </div>
@@ -183,18 +142,13 @@
     <script src="{{ asset('userInter/lib/waypoints/waypoints.min.js') }}"></script>
     <script src="{{ asset('userInter/lib/counterup/counterup.min.js') }}"></script>
     <script src="{{ asset('userInter/lib/owlcarousel/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('js/sweet.js') }}"></script>
-    <script src="{{ asset('js/axios.js') }}"></script>
-
-
 
     <!-- Template Javascript -->
     <script src="{{ asset('userInter/js/main.js') }}"></script>
-
     <script>
         function confirmDistroy(id, reference) {
             Swal.fire({
-                title: 'هل تريد حذف اللاعب؟',
+                title: 'هل تريد حذف الخبر؟',
                 text: "!لا يمكن التراجع عن هذه الخطوة",
                 icon: 'warning',
                 showCancelButton: true,
@@ -215,7 +169,7 @@
                     // handle success
                     console.log(response);
                     showMessage(response.data);
-                    document.getElementById('div_' +id).remove();
+                    document.getElementById('div_' + id).remove();
                 })
                 .catch(function(error) {
                     // handle error

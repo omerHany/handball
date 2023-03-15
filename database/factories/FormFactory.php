@@ -18,7 +18,8 @@ class FormFactory extends Factory
     {
         return [
             //
-            'content' => $this->faker->paragraph(),
+            
+            'content' =>'<p>'.$this->faker->paragraph().'<p>',
         ];
     }
 }
