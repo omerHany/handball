@@ -48,7 +48,7 @@ Route::prefix('/admin')->middleware('auth:admin')->group(function () {
 
         Route::resource('/clubs', AdminController::class,);
          
-        Route::view('/تعديل_الاخبار','new.newEdit')->name('news');
+          Route::view('/تعديل_الاخبار','new.newEdit')->name('news');
     });
     // dashboard
 Route::view('dashboard', 'parant')->name('dashboard');
