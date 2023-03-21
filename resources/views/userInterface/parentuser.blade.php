@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Startup - Startup Website Template</title>
+    <title>كرة اليد | @yield('title')</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -41,12 +41,14 @@
     <div class="container-fluid bg-dark px-5 d-none d-lg-block">
         <div class="row gx-0">
             <div class="d-inline-flex align-items-center" style="height: 100px;">
+
                 <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
-                    @if (auth()->check())
+                     @if (auth()->check())
                         <div class="demo-inline-spacing" style="color: #ffffff">
-                            <a href="{{route('homee')}}"
+                            <a href="{{route('dashboard')}}"
                                 class="btn rounded-pill btn-icon btn-outline-primary">
                                 <span class="tf-icons bx bx-arrow-back"></span>
+                                
                             </a>
                         </div>
                     @endif
@@ -60,19 +62,21 @@
                             <span class="fa fa-bars"></span>
                         </button>
                     @endif
+                   
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0">
-                            <a href="contact.html"class="nav-item nav-link">البطولات</a>
-                            <a href="service.html"class="nav-item nav-link">الاندية</a>
-                            <a href="about.html" class="nav-item nav-link">لجان الاتحاد</a>
-                            <a href="index.html" class="nav-item nav-link active">الرئيسية</a>
+                            <a href="{{route('btolatt')}}"class="nav-item nav-link">البطولات</a>
+                            <a href="{{route('cupp')}}"class="nav-item nav-link">الاندية</a>
+                            <a href="{{route('legann')}}" class="nav-item nav-link">لجان الاتحاد</a>
+                            <a href="{{route('homee')}}" class="nav-item nav-link active">الرئيسية</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-
                             <div style="display: flex; justify-content: center; align-items: center;">
-                                <img class="rounded-circle" style="width: 70px; height: 70px;"
+                                <img class="rounded-circle " style="width: 70px; height: 70px;"
                                     src="{{ asset('hand/assets/img/avatars/hand.jpg') }}" alt="">
                             </div>
                         </div>
+                        {{-- <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal"
+                            data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton> --}}
 
                     </div>
                 </nav>
@@ -107,18 +111,7 @@
 
 
     <!-- Blog Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-56">
-            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <h2 class="fw-bold text-primary text-uppercase">الاتحاد الفلسطيني لكرة اليد</h2>
-                <h1 class="mb-0">أخبار كرة اليد </h1>
-            </div>
-            <div>
-                {{-- <img src="{{Storage::url($news->image)}}" class="align-items-center" width="300" height="200"> --}}
-                <h3>{!! $news->content !!}</h3>
-            </div>
-        </div>
-    </div>
+    @yield('userContent')
     <!-- Footer Start -->
     <!-- Footer Start -->
 
@@ -151,52 +144,16 @@
     <script src="{{ asset('userInter/lib/waypoints/waypoints.min.js') }}"></script>
     <script src="{{ asset('userInter/lib/counterup/counterup.min.js') }}"></script>
     <script src="{{ asset('userInter/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/sweet.js') }}"></script>
+    <script src="{{ asset('js/axios.js') }}"></script>
+
+
 
     <!-- Template Javascript -->
     <script src="{{ asset('userInter/js/main.js') }}"></script>
-    <script>
-        function confirmDistroy(id, reference) {
-            Swal.fire({
-                title: 'هل تريد حذف الخبر؟',
-                text: "!لا يمكن التراجع عن هذه الخطوة",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'حذف',
-                cancelButtonText: 'الغاء'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    performDelete(id, reference)
-                }
-            });
-        }
 
-        function performDelete(id, reference) {
-            axios.delete('/admin/news/' + id)
-                .then(function(response) {
-                    // handle success
-                    console.log(response);
-                    showMessage(response.data);
-                    document.getElementById('div_' + id).remove();
-                })
-                .catch(function(error) {
-                    // handle error
-                    console.log(error);
-                    showMessage(error.response.data);
-                })
-
-        }
-
-        function showMessage(data) {
-            Swal.fire({
-                icon: data.icon,
-                title: data.title,
-                showConfirmButton: false,
-                timer: 1500
-            })
-        }
-    </script>
+    @yield('scriptuser')
+    
 </body>
 
 </html>

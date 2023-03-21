@@ -17,9 +17,9 @@ class ManegarController extends Controller
     public function index()
     {
         //
-        // $data = auth()->user()->manegars;
+        $manegars = auth()->user()->manegars;
 
-        $manegars = manegar::all();
+        // $manegars = manegar::all();
         return response()->view('manegar.indexManegar', ['manegars' => $manegars]);
     }
 

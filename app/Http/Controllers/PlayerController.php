@@ -19,8 +19,7 @@ class PlayerController extends Controller
     public function index()
     {
         //
-        // $players = auth()->user()->players;
-        $players = player::all();
+        $players = auth()->user()->players;
         return response()->view('player.indexPlayer', ['players' => $players]);
     }
 

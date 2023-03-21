@@ -28,9 +28,9 @@ Route::get('/', [FrontController::class, 'home'])->name('homee');
 // الاخبار
 Route::get('/الاخبار/{news}', [NewsController::class, 'show'])->name('showw');
 
-Route::view('/الاندية', 'form.cup')->name('cupp');
-Route::view('/البطولات', 'form.btolat')->name('btolatt');
-Route::view('/لجان_الاتحاد', 'form.legan')->name('legann');
+Route::get('/الاندية', [FormController::class, 'cup'])->name('cupp');
+Route::get('/البطولات', [FormController::class, 'btolat'])->name('btolatt');
+Route::get('/لجان_الاتحاد',[FormController::class, 'legan'])->name('legann');
    
 
 // تسجيل الدخول 
@@ -45,10 +45,11 @@ Route::prefix('/admin')->middleware('auth:admin')->group(function () {
         Route::resource('news', NewsController::class);
 
         Route::resource('/form_edit', FormController::class);
+        Route::post('/Edit_forms',[FormController::class, 'update'])->name('editForms');
 
         Route::resource('/clubs', AdminController::class,);
          
-          Route::view('/تعديل_الاخبار','new.newEdit')->name('news');
+          Route::view('/تعديل_الاخبار','new.newEdit')->name('newss');
     });
     // dashboard
 Route::view('dashboard', 'parant')->name('dashboard');

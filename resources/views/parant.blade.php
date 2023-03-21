@@ -13,7 +13,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{asset('hand/assets/img/favicon/favicon.ico')}}" />
+    <link rel="icon" type="image/x-icon" href="{{asset('hand/assets/img/avatars/hand.jpg')}}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -128,7 +128,7 @@
                         <ul class="menu-sub">
                             <li class="menu-item">
                                 <a href="{{route('homee')}}" class="menu-link">
-                                    <div data-i18n="Basic Inputs">الاخبار</div>
+                                    <div data-i18n="Basic Inputs">تعديل الاخبار </div>
                                 </a>
                             </li>
                         </ul>
