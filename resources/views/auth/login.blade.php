@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="{{asset('login/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('login/dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('js/toastr/toastr.min.css') }}">
+
 </head>
 
 <body class="hold-transition login-page">
@@ -27,7 +29,7 @@
         <a href="{{route('homee')}}" class="h3"><b>الاتحاد الفلسطيني </b>لكرة اليد</a>
       </div>
       <div class="card-body">
-        <form>
+        <form onsubmit="event.preventDefault();login();">
           <div class="input-group mb-3">
             <input type="email" class="form-control" id="email" placeholder="Email">
             <div class="input-group-append">
@@ -58,9 +60,9 @@
         </form>
 
 
-        <p class="mb-1">
+        {{-- <p class="mb-1">
           <a href="forgot-password.html">I forgot my password</a>
-        </p>
+        </p> --}}
       </div>
       <!-- /.card-body -->
     </div>
@@ -82,25 +84,45 @@
   <script src="{{ asset('js/sweet.js') }}"></script>
 
   <script>
-    function login(){
-        axios.post('{{route('login')}}',{
-            email: document.getElementById('email').value,
-            password: document.getElementById('password').value,
-            remember: document.getElementById('remember').checked
-        })
-            .then(function(response) {
-                // handle success
-                window.location.href = '{{route('dashboard')}}';
-            })
-        .catch(function(error) {
-            // handle error
-            // console.log(error.response);
-            Toast.fire({
-                icon: "error",
-                title: error.response.data.message,
-            });
-        })
-    }
+    // function login(){
+    //     axios.post('{{route('login')}}',{
+    //         email: document.getElementById('email').value,
+    //         password: document.getElementById('password').value,
+    //         remember: document.getElementById('remember').checked
+    //     })
+    //         .then(function(response) {
+    //             // handle success
+    //             window.location.href = '{{route('dashboard')}}';
+    //         })
+    //     .catch(function(error) {
+    //         // handle error
+    //         // console.log(error.response);
+    //         Toast.fire({
+    //             icon: "error",
+    //             title: error.response.data.message,
+    //         });
+    //     })
+    // }
+     function login() {
+            let formData = new FormData();
+            formData.append('email', document.getElementById('email').value);
+            formData.append('password', document.getElementById('password').value);
+            formData.append('remember', document.getElementById('remember').value);
+            axios.post('{{route('login')}}',
+                    formData
+                )
+
+                .then(function(response) {
+                    toastr.success(response.data.message);
+                    console.log(response);
+                    window.location.href = '{{route('dashboard')}}';
+                })
+                .catch(function(error) {
+                    toastr.error(error.response.data.message);
+                    console.log(error);
+                });
+
+        }
   </script>
 
 </body>

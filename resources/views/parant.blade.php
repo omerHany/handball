@@ -62,7 +62,7 @@
                     <img class="rounded-circle" style="width: 60px; height: 60px;"
                         src="{{asset('hand/assets/img/avatars/hand.jpg')}}" alt="">
                 </div>
-                <span class="app-brand-text demo menu-text fw-bolder ms-2"> الاتحاد الفلسطيني لكرة اليد </span>
+                <span class="app-brand-text demo menu-text fw-bolder ms-2"> &nbsp; الاتحاد الفلسطيني لكرة اليد </span>
 
                 <div class="menu-inner-shadow"></div>
 
@@ -175,7 +175,7 @@
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="forms-basic-inputs.html" class="menu-link">
+                                <a href="{{route('playeradmin')}}" class="menu-link">
                                     <div data-i18n="Basic Inputs"> عرض اللاعبين</div>
                                 </a>
                             </li>

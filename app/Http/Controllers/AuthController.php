@@ -21,7 +21,7 @@ class AuthController extends Controller
         $validator = validator($request->all(), [
             'email' => 'required|email|exists:admins,email',
             'password' => 'required|string|min:3',
-            'remember' => 'boolean'
+            'remember' => ''
         ],[
             'email.required'=>'ادخل الريد الالكتروني',
             'email.email'=>'مطلوب بريد الكتروني',
@@ -39,11 +39,13 @@ class AuthController extends Controller
             } else {
                 return response()->json(['message' => 'فشل تسجيل الدخول! تحقق من بياناتك'],Response::HTTP_BAD_REQUEST);
             }
+            $remember = $request->has('remember') ? true : false;
         } else {
             return response()->json([
                 'message' => $validator->getMessageBag()->first()
             ], Response::HTTP_BAD_REQUEST);
         }
+        
         // return response()->json(['massage'=>'massageee qd'],Response::HTTP_BAD_EQUEST);
     }
 

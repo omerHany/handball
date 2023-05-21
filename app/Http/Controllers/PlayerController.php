@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
+use function GuzzleHttp\Promise\all;
+
 class PlayerController extends Controller
 {
     /**
@@ -21,6 +23,12 @@ class PlayerController extends Controller
         //
         $players = auth()->user()->players;
         return response()->view('player.indexPlayer', ['players' => $players]);
+    }
+    public function index2()
+    {
+        //
+        $players = player::all();
+        return response()->view('player.AdminIndex', ['players' => $players]);
     }
 
     /**

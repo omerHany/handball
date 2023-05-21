@@ -41,18 +41,15 @@ Route::prefix('/')->group(function () {
     // صفحات المشرف
 Route::prefix('/admin')->middleware('auth:admin')->group(function () {
     Route::middleware('role:admin')->group(function () {
-
         Route::resource('news', NewsController::class);
-
         Route::resource('/form_edit', FormController::class);
         Route::post('/Edit_forms',[FormController::class, 'update'])->name('editForms');
-
+        Route::get('/players_admin', [PlayerController::class, 'index2'])->name('playeradmin');
         Route::resource('/clubs', AdminController::class,);
-         
-          Route::view('/تعديل_الاخبار','new.newEdit')->name('newss');
+        Route::view('/تعديل_الاخبار','new.newEdit')->name('newss');
     });
     // dashboard
-Route::view('dashboard', 'parant')->name('dashboard');
+    Route::view('dashboard', 'parant')->name('dashboard');
 
     // اللاعبين
     Route::resource('/players', PlayerController::class);

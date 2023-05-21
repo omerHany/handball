@@ -8,7 +8,7 @@
                 <h1 class="mb-0">أخبار كرة اليد </h1>
             </div>
             <div class="row g-5">
-                @foreach ($data as $new)
+                @foreach ($data->sortByDesc('id') as $new)
                     <div class="col-lg-4 wow slideInUp" id="div_{{ $new->id }}">
                         <div class="blog-item bg-light rounded overflow-hidden">
 
