@@ -11,7 +11,7 @@ class Admin extends Authenticatable
 {
     use HasFactory;
     public function players(){
-        return $this->hasMany(player::class);
+        return $this->hasMany(player::class, 'admin_id', 'id');
     }
     public function manegars()
     {

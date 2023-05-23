@@ -46,6 +46,11 @@ class PlayerController extends Controller
     public function store(Request $request)
     {
         //
+        if ($request->user()->players()->count()>19){
+            return response()->json([
+                'message' => 'تم تجاوز عدد اللاعبين المحدد'
+            ], response::HTTP_BAD_REQUEST);
+        }
 
         $validator = Validator($request->all(), [
             // 'club' => 'required|string',

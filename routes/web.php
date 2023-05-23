@@ -9,6 +9,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ManegarController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PlayerController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Contracts\Role;
 
@@ -36,7 +37,7 @@ Route::get('/لجان_الاتحاد',[FormController::class, 'legan'])->name('l
 // تسجيل الدخول 
 Route::prefix('/')->group(function () {
     Route::get('/تسجيل_الدخول', [AuthController::class, 'showLogin'])->name('loginn');
-    Route::post('/تسجيل_الدخول', [AuthController::class, 'login'])->name('login');
+    Route::post('/تسجيل_الدخول', [AuthController::class, 'login'])->middleware('throttle:3,1')->name('login');
 });
     // صفحات المشرف
 Route::prefix('/admin')->middleware('auth:admin')->group(function () {

@@ -65,10 +65,10 @@
                    
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0">
-                            <a href="{{route('btolatt')}}"class="nav-item nav-link">البطولات</a>
-                            <a href="{{route('cupp')}}"class="nav-item nav-link">الاندية</a>
-                            <a href="{{route('legann')}}" class="nav-item nav-link">لجان الاتحاد</a>
-                            <a href="{{route('homee')}}" class="nav-item nav-link active">الرئيسية</a>
+                            <a href="{{route('btolatt')}}" class="nav-item nav-link @if (Route::currentRouteName()=='btolatt') active @endif">البطولات</a>
+                            <a href="{{route('cupp')}}"class="nav-item nav-link @if (Route::currentRouteName()=='cupp') active @endif" >الاندية</a>
+                            <a href="{{route('legann')}}" class="nav-item nav-link @if (Route::currentRouteName()=='legann') active @endif" >لجان الاتحاد</a>
+                            <a href="{{route('homee')}}" class="nav-item nav-link @if (Route::currentRouteName()=='homee') active @endif">الرئيسية</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <div style="display: flex; justify-content: center; align-items: center;">
                                 <img class="rounded-circle " style="width: 70px; height: 70px;"

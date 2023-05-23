@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
+use Illuminate\Http\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -44,5 +46,14 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+    public function render($request, Throwable $e){
+        // Customize the "Too Many Attempts" error message
+        if ($e instanceof ThrottleRequestsException) {
+             return response()->json(['message'=>'حاول تسجيل الدخول بعد دقيقة'], 429);
+        }
+
+        // Handle other exceptions as usual
+        return parent::render($request, $e);
     }
 }

@@ -38,7 +38,7 @@
                             </td>
                             <td>{{$player->id_number}}</td>
                             <td>{{$player->phone_number}}</td>
-                            <td>{{auth()->user()->name}}</td>
+                            <td>{{$player->club->name}}</td>
                             <td>
                                 <div class="demo-inline-spacing">
                                     <a href="{{route('players.edit',$player->id)}}" class="btn rounded-pill btn-icon btn-outline-primary">
