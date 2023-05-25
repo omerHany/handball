@@ -1,5 +1,5 @@
 @extends('parant')
-@section('titel', 'اضافة خبر')
+@section('title', 'تعديل الخبر')
 
 
 @section('content')

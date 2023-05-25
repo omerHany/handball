@@ -1,7 +1,7 @@
 {{-- تسجيل لاعب --}}
 
 @extends('parant')
-@section('titel', 'تغيير كلمة السر')
+@section('title', 'تغيير كلمة السر')
 
 @section('content')
 

@@ -1,5 +1,5 @@
 @extends('userInterface.parentuser')
-@section('title', 'الاخبار')
+@section('title', 'الرئيسية')
 @section('userContent')
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-56">

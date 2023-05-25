@@ -1,7 +1,7 @@
 {{-- الرئيسية --}}
 
 @extends('parant')
-@section('titel', 'الرئيسية')
+@section('title', 'الرئيسية')
 
 
 @section('content')

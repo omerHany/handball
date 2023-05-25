@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Startup - Startup Website Template</title>
+        <title>كرة اليد | الاخبار</title>
+
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -50,16 +51,14 @@
                             </a>
                         </div>
                     @endif
-                    @if (!auth()->check())
-                        <a href="{{ route('loginn') }}" class="nav-item nav-link">
-                            <h4 class="m-0" style="color: #ffffff"><i class="fa fa-user-tie me-2"></i> تسجيل الدخول
-                            </h4>
-                        </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarCollapse">
-                            <span class="fa fa-bars"></span>
-                        </button>
-                    @endif
+                    
+                    <div class="demo-inline-spacing" style="color: #ffffff">
+                            <a href="{{route('homee')}}"
+                                class="btn rounded-pill btn-icon btn-outline-primary">
+                                <span class="tf-icons bx bx-arrow-back"></span>
+                            </a>
+                        </div>
+                    
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0">
                             <a href="contact.html"class="nav-item nav-link">البطولات</a>
