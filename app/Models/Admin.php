@@ -15,7 +15,7 @@ class Admin extends Authenticatable
     }
     public function manegars()
     {
-        return $this->hasMany(manegar::class);
+        return $this->hasMany(manegar::class, 'admin_id', 'id');
     }
 
 }

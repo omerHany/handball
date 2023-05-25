@@ -22,6 +22,12 @@ class ManegarController extends Controller
         // $manegars = manegar::all();
         return response()->view('manegar.indexManegar', ['manegars' => $manegars]);
     }
+    public function index2()
+    {
+        //
+        $manegars = manegar::all();
+        return response()->view('manegar.manegarAdmin', ['manegars' => $manegars]);
+    }
 
     /**
      * Show the form for creating a new resource.

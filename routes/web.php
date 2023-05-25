@@ -46,6 +46,8 @@ Route::prefix('/admin')->middleware('auth:admin')->group(function () {
         Route::resource('/form_edit', FormController::class);
         Route::post('/Edit_forms',[FormController::class, 'update'])->name('editForms');
         Route::get('/players_admin', [PlayerController::class, 'index2'])->name('playeradmin');
+        Route::get('/manegars_admin', [ManegarController::class, 'index2'])->name('manegaradmin');
+        // Route::get('/club&&', [AdminController::class, 'index2'])->name('clubadmin');
         Route::resource('/clubs', AdminController::class,);
         Route::view('/تعديل_الاخبار','new.newEdit')->name('newss');
     });

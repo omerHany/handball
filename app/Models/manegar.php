@@ -9,6 +9,6 @@ class manegar extends Model
 {
     use HasFactory;
     public function club(){
-        return $this->belongsTo(Admin::class)->withTrashed();
+        return $this->belongsTo(Admin::class,'admin_id', 'id');
     }
 }
