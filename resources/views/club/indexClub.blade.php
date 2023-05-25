@@ -5,6 +5,7 @@
 
 @section('content')
 
+
 <div class="content-wrapper">
     <!-- Content -->
 
@@ -23,15 +24,20 @@
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        @foreach ($clubs as $club)
+                        @foreach ($clubs as $key => $club)
+                        @if ($key > 0)
                         <tr>
 
-                            <td>{{$loop->iteration}}</td>
+                            <td>{{$loop->iteration - 1}}</td>
                             <td>{{$club->name}}</td>
                                 <td>{{$club->email}}</td>
 
                             <td>
                                 <div class="demo-inline-spacing">
+                                    <a href="{{route('clubs.show',$club->id)}}"
+                                        class="btn rounded-pill btn-icon btn-outline-primary">
+                                        <span  class="bx bxs-right-arrow-circle"></span>
+                                    </a>  
                                     <a href="{{route('clubs.edit',$club->id)}}"
                                         class="btn rounded-pill btn-icon btn-outline-primary">
                                         <span class="tf-icons bx bx-edit"></span>
@@ -43,6 +49,7 @@
                                 </div>
                             </td>
                         </tr>
+                        @endif
                         @endforeach
                     </tbody>
                 </table>

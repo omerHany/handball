@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\club;
+use App\Models\player;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -20,6 +21,8 @@ class AdminController extends Controller
         $clubs = Admin::all();
         return response()->view('club.indexClub', ['clubs' => $clubs]);
     }
+   
+    
 
     /**
      * Show the form for creating a new resource.
@@ -69,9 +72,11 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Admin $admin)
+    public function show(Admin $club)
     {
-        //
+        //        
+        return response()->view('club.club$$', ['admin' => $club]);
+
     }
 
     /**
