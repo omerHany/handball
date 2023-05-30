@@ -1,4 +1,4 @@
-{{-- عرض اللاعبين --}}
+{{-- عرض الاداريين --}}
 
 @extends('parant')
 @section('title',' عرض الادارين')
@@ -21,6 +21,7 @@
                             <th>رقم الهوية</th>
                             <th>رقم الجوال</th>
                             <th>الوظيفة</th>
+                            <th>اسم النادي</th>
                             <th>الاعدادات</th>
 
                         </tr>
@@ -40,6 +41,7 @@
                             <td>{{$manegar->id_number}}</td>
                             <td>{{$manegar->phone_number}}</td>
                             <td>{{$manegar->job}}</td>
+                            <td>{{$manegar->club->name}}</td>
 
 
                             <td>
