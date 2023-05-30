@@ -11,9 +11,11 @@
                 <h2 class="fw-bold text-primary text-uppercase">الاتحاد الفلسطيني لكرة اليد</h2>
                 <h1 class="mb-0">الاندية </h1>
             </div>
+            
             <div class="row g-5">
                 {!!$forms->content!!}
             </div>
+            
         </div>
     </div>
 

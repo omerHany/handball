@@ -40,7 +40,6 @@
                             <td>{{$manegar->id_number}}</td>
                             <td>{{$manegar->phone_number}}</td>
                             <td>{{$manegar->job}}</td>
-                            <td>{{$manegar->club->name}}</td>
 
 
                             <td>

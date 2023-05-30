@@ -52,12 +52,12 @@
                         </div>
                     @endif
                     
-                    <div class="demo-inline-spacing" style="color: #ffffff">
+                    {{-- <div class="demo-inline-spacing" style="color: #ffffff">
                             <a href="{{route('homee')}}"
                                 class="btn rounded-pill btn-icon btn-outline-primary">
                                 <span class="tf-icons bx bx-arrow-back"></span>
                             </a>
-                        </div>
+                        </div> --}}
                     
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0">

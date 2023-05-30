@@ -109,7 +109,8 @@ class AdminController extends Controller
         if (!$validator->fails()) {
             $club->name = $request->input('name');
             $club->email = $request->input('email');
-            $club->password = $request->input('password');
+            $club->password = Hash::make($request->input('password'));
+
             $isSaved = $club->save();
             return response()->json([
                 'message' => $isSaved ? 'تم التعديل بنجاح' : 'فشل التعديل!'
