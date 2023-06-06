@@ -32,8 +32,15 @@
     <!-- Template Stylesheet -->
     <link href="{{ asset('userInter/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('hand/assets/vendor/fonts/boxicons.css')}}" />
-
-
+@yield('style')
+<style>
+    .mt-5 {
+    margin-top: rem !important;
+    }
+    .pt-5 {
+    padding-top: 3rem !important;
+    }
+</style>
 </head>
 
 <body>
@@ -112,23 +119,77 @@
 
     <!-- Blog Start -->
     @yield('userContent')
-    <!-- Footer Start -->
-    <!-- Footer Start -->
-
-
-    <div class="container-fluid text-white" style="background: #061429; position: fixed; bottom: 0">
-        <div class="container text-center">
-            <div class="row justify-content-end">
-                <div class="col-lg-12 col-md-6">
-                    <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
-                        &nbsp; &nbsp; &nbsp; <a href="#">0599999999</a>: رقم الجوال &nbsp; &nbsp; &nbsp;
-                        &nbsp; &nbsp; &nbsp; &nbsp; <a href="#">handball@gmail.com</a>: البريد الالكتروني
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row gx-5">
+            <div class="col-lg-4 col-md-6 footer-about">
+                <div
+                    class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-4">
+                    <img class="rounded-circle " style="width: 100px; height: 100px;" src="{{ asset('hand/assets/img/avatars/hand.jpg') }}"
+                        alt="">
+                    <a class="navbar-brand">
+                            <br>
+                        <h1 class="m-0 text-white">الاتحاد الفلسطيني لكرة اليد</h1>
+                    </a>
+                    <p class="mt-3 mb-4">تأسس الاتحاد الفسطيني لكرة اليد في عام 1980 </p>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-6">
+                <div class="row gx-5">
+                    <div class="col-lg-4 col-md-12 pt-5 mb-5">
+                        <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                            <h3 class="text-light mb-0">التواصل</h3>
+                        </div>
+                        <div class="d-flex mb-2">
+                            <i class="bi bi-geo-alt text-primary me-2"></i>
+                            <p class="mb-0">Gaza</p>
+                        </div>
+                        <div class="d-flex mb-2">
+                            <i class="bi bi-envelope-open text-primary me-2"></i>
+                            <p class="mb-0">handball@gmail.com</p>
+                        </div>
+                        <div class="d-flex mb-2">
+                            <i class="bi bi-telephone text-primary me-2"></i>
+                            <p class="mb-0">0592196569</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                        <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                            <h3 class="text-light mb-0">الوصول السريع</h3>
+                        </div>
+                        <div class="link-animated d-flex flex-column justify-content-start">
+                            <a class="text-light mb-2" href="{{route('homee')}}"><i
+                                    class="bi bi-arrow-right text-primary me-2"></i>الرئيسية</a>
+                            <a class="text-light mb-2" href="{{route('legann')}}"><i class="bi bi-arrow-right text-primary me-2"></i>لجان الاتحاد</a>
+                            <a class="text-light mb-2" href="{{route('cupp')}}"><i class="bi bi-arrow-right text-primary me-2"></i>الاندية</a>
+                            <a class="text-light mb-2" href="{{route('btolatt')}}"><i class="bi bi-arrow-right text-primary me-2"></i>البطولات</a>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Footer End -->
+</div>
+<div class="container-fluid text-white" style="background: #061429;">
+    <div class="container text-center">
+        <div class="row justify-content-end">
+            <div class="col-lg-8 col-md-6">
+                <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
+                    <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">Omar Hany AboZaid</a>. All Rights
+                        Reserved.
+
+                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                        Designed by 
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
 
 
     <!-- Back to Top -->
